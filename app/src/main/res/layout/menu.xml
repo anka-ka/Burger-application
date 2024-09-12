@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/black"
+    android:padding="36dp">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/menu"
+        style="@style/Widget.AppTheme.IconButton"
+        android:layout_width="@dimen/icon_button_size"
+        android:layout_height="@dimen/icon_button_size"
+        android:layout_marginBottom="@dimen/common_spacing"
+        app:iconTint ="@color/white"
+        app:icon="@drawable/menu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bell"
+        style="@style/Widget.AppTheme.IconButton"
+        android:layout_width="@dimen/icon_button_size"
+        android:layout_height="@dimen/icon_button_size"
+        android:layout_marginBottom="@dimen/common_spacing"
+        app:iconTint ="@color/white"
+        app:icon="@drawable/bell"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="bell, menu" />
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_spacing"
+        android:layout_marginBottom="@dimen/common_spacing"
+        android:text="@string/every_bite_a"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        app:layout_goneMarginTop="40dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrier" />
+    <TextView
+        android:id="@+id/title2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/better_burger"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+
+
+         />
+    <androidx.constraintlayout.widget.Barrier
+
+        android:id="@+id/barrier2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="title2" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/filter"
+        style="@style/Widget.AppTheme.IconButton"
+        app:layout_goneMarginTop="40dp"
+        android:layout_width="@dimen/icon_button_size"
+        android:layout_height="@dimen/icon_button_size"
+        android:layout_marginBottom="@dimen/common_spacing"
+        app:iconTint ="@color/white"
+        app:icon="@drawable/filter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/barrier2" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/burgers"
+        style="@style/Widget.AppTheme.IconButton"
+        app:layout_goneMarginTop="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/common_spacing"
+        android:textSize="10sp"
+        android:textColor="@color/white"
+        android:text="@string/burger"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/barrier2"
+        tools:ignore="SmallSp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/pasta"
+        style="@style/Widget.AppTheme.IconButton"
+        app:layout_goneMarginTop="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/common_spacing"
+        android:textSize="10sp"
+        android:textColor="@color/white"
+        android:text="@string/pasta"
+        app:layout_constraintStart_toEndOf="@id/burgers"
+        app:layout_constraintTop_toTopOf="@id/barrier2"
+        tools:ignore="SmallSp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/salads"
+        style="@style/Widget.AppTheme.IconButton"
+        app:layout_goneMarginTop="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/common_spacing"
+        android:textSize="10sp"
+        android:textColor="@color/white"
+        android:text="@string/Salads"
+        app:layout_constraintStart_toEndOf="@id/pasta"
+        app:layout_constraintTop_toTopOf="@id/barrier2"
+        tools:ignore="SmallSp" />
+    <androidx.constraintlayout.widget.Barrier
+
+        android:id="@+id/barrier3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="burgers,pasta,salads" />
+
+    <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/productGrid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:columnCount="2"
+        app:rowCount="2"
+        app:layout_constraintTop_toBottomOf="@id/barrier3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp"
+            app:layout_columnSpan="1"
+            app:layout_row="0">
+
+            <ImageView
+                android:id="@+id/BeefBurger"
+                android:layout_width="150dp"
+                android:layout_height="112dp"
+                android:src="@drawable/image_frame" />
+
+            <TextView
+                android:id="@+id/BeefText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/beef_burger"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="14sp" />
+            <TextView
+                android:id="@+id/BeefText2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/beef_with_cheese"
+                android:textColor="@color/grey"
+                android:textSize="12sp" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/BeefPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/_18_00"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/add"
+                    style="@style/Widget.AppTheme.IconButton"
+                    android:layout_width="49dp"
+                    android:layout_height="47dp"
+                    app:icon="@drawable/baseline_add_24"
+                    app:iconTint="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@id/BeefPrice"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/BeefPrice" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+
+
+
+
+    </androidx.gridlayout.widget.GridLayout>
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

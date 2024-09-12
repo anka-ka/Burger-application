@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Beef Burger",
+    "description": "Beef with cheese",
+    "price": "18.00 $",
+    "imageUrl": "image_frame"
+  },
+  {
+    "name": "Texas Burger",
+    "description": "Beef with tomato",
+    "price": "15.00 $",
+    "imageUrl": "burger_royal"
+  },
+  {
+    "name": "Rancho Burger",
+    "description": "Beef with egg",
+    "price": "16.00 $",
+    "imageUrl": "rancho_burger"
+  },
+  {
+    "name": "Chicken Burger",
+    "description": "Beef with chicken",
+    "price": "9.00 $",
+    "imageUrl": "chicken_burger"
+  }
+]

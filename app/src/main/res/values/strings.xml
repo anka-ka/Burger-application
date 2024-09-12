@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Burger application</string>
+    <string name="menu">menu</string>
+    <string name="bell">bell</string>
+    <string name="every_bite_a">Every Bite a</string>
+    <string name="better_burger">Better burger!</string>
+    <string name="burger">Burger</string>
+    <string name="pasta">Pasta</string>
+    <string name="Salads">Salads</string>
+    <string name="beef_burger">Beef Burger</string>
+    <string name="beef_with_cheese">Beef with cheese</string>
+    <string name="_18_00">$18.00</string>
+    <string name="texas_burger">Texas Burger</string>
+    <string name="beef_whit_tomato">Beef whit tomato</string>
+    <string name="_12_00">$12.00</string>
+</resources>
