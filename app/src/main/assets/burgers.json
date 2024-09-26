@@ -1,26 +1,30 @@
 [
   {
+    "id": "1",
     "name": "Beef Burger",
-    "description": "Beef with cheese",
-    "price": "18.00 $",
+    "shortDescription": "Beef with cheese",
+    "price": "18.00",
     "imageUrl": "image_frame"
   },
   {
+    "id": "2",
     "name": "Texas Burger",
-    "description": "Beef with tomato",
+    "shortDescription": "Beef with tomato",
     "price": "15.00 $",
     "imageUrl": "burger_royal"
   },
   {
+    "id": "3",
     "name": "Rancho Burger",
-    "description": "Beef with egg",
-    "price": "16.00 $",
+    "shortDescription": "Beef with egg",
+    "price": "16.00",
     "imageUrl": "rancho_burger"
   },
   {
+    "id": "4",
     "name": "Chicken Burger",
-    "description": "Beef with chicken",
-    "price": "9.00 $",
+    "shortDescription": "Beef with chicken",
+    "price": "9.00",
     "imageUrl": "chicken_burger"
   }
 ]

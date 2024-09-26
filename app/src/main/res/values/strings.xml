@@ -13,4 +13,8 @@
     <string name="texas_burger">Texas Burger</string>
     <string name="beef_whit_tomato">Beef whit tomato</string>
     <string name="_12_00">$12.00</string>
+    <string name="go">go</string>
+    <string name="let_s_fix_it">Let\'s fix it</string>
+    <string name="are_you_hungry">Are you hungry?</string>
+    <string name="longDescription">Burger with a huge pork cutlet, pickled cucumbers, blue onions, grilled vegetables (green beans, bell peppers, carrots), oyster dressing, black cuttlefish ink bun.</string>
 </resources>

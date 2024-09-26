@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/previewFragment">
+
+    <fragment
+        android:id="@+id/previewFragment"
+        android:label="Preview"
+        android:name="com.example.burgerapplication.ui.PreviewFragment"
+        tools:layout="@layout/preview_fragment" />
+
+    <fragment
+        android:id="@+id/menuFragment"
+        android:label="Menu"
+        android:name="com.example.burgerapplication.ui.MenuFragment"
+        tools:layout="@layout/menu_fragment"/>
+
+    <action
+        android:id="@+id/action_previewFragment_to_menuFragment"
+        app:destination="@id/menuFragment"/>
+
+</navigation>

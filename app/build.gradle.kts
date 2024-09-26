@@ -1,6 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id ("org.jetbrains.kotlin.kapt")
+    id("com.google.dagger.hilt.android")
+    id ("kotlin-kapt")
+
 }
 
 android {
@@ -36,6 +40,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
     buildFeatures {
         compose = true
     }
@@ -47,9 +52,26 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
 }
 
 dependencies {
+
+    implementation (libs.retrofit.v290)
+    implementation (libs.converter.gson.v290)
+    implementation (libs.kotlinx.coroutines.core.v160)
+    implementation (libs.kotlinx.coroutines.android.v160)
+    implementation ("com.github.bumptech.glide:glide:5.0.0-rc01")
+
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+    implementation ("com.google.dagger:hilt-android:2.48")
+    kapt ("com.google.dagger:hilt-compiler:2.48")
+
+
+
+
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

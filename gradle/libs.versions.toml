@@ -1,26 +1,66 @@
 [versions]
 agp = "8.6.0"
+androidxAppcompat = "1.1.0"
 appcompat = "1.7.0"
+appcompatVersion = "1.6.1"
 constraintlayout = "2.1.4"
+converterGson = "2.11.0"
+converterGsonVersion = "2.9.0"
+glide = "4.16.0"
+googleHiltAndroid = "2.48"
+googleHiltCompiler = "2.48"
 gridlayout = "1.0.0"
 gson = "2.11.0"
+hiltAndroid = "2.x"
+hiltAndroidCompiler = "2.38.1"
+hiltAndroidCompilerVersion = "2.x"
+hiltAndroidVersion = "2.52"
+hiltCompiler = "1.2.0"
+hiltCompilerVersion = "2.52"
+hiltLifecycleViewmodel = "1.0.0-alpha03"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
+kotlinxCoroutinesAndroid = "1.8.1"
+kotlinxCoroutinesAndroidVersion = "1.6.0"
+kotlinxCoroutinesCore = "1.8.1"
+kotlinxCoroutinesCoreVersion = "1.6.0"
 lifecycleRuntimeKtx = "2.8.5"
 activityCompose = "1.9.2"
 composeBom = "2024.04.01"
 material = "1.12.0"
+navigationFragmentKtx = "2.8.1"
+quantitypickerVersion = "1.0.1"
+retrofit = "2.11.0"
+retrofitVersion = "2.9.0"
 
 [libraries]
+andanhm-quantitypicker = { module = "com.andanhm:quantitypicker", version.ref = "quantitypickerVersion" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+androidx-appcompat-v110 = { module = "androidx.appcompat:appcompat", version.ref = "androidxAppcompat" }
+androidx-appcompat-v161 = { module = "androidx.appcompat:appcompat", version.ref = "appcompatVersion" }
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-gridlayout = { module = "androidx.gridlayout:gridlayout", version.ref = "gridlayout" }
+androidx-hilt-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "hiltCompiler" }
+androidx-hilt-lifecycle-viewmodel = { module = "androidx.hilt:hilt-lifecycle-viewmodel", version.ref = "hiltLifecycleViewmodel" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
+androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationFragmentKtx" }
+converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
+converter-gson-v290 = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGsonVersion" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroidCompiler" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroidCompiler" }
+hilt-android-compiler-v2x = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroidCompilerVersion" }
+hilt-android-v248 = { module = "com.google.dagger:hilt-android", version.ref = "googleHiltAndroid" }
+hilt-android-v252 = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroidVersion" }
+hilt-android-v2x = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
+hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltCompilerVersion" }
+hilt-compiler-v248 = { module = "com.google.dagger:hilt-compiler", version.ref = "googleHiltCompiler" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -34,7 +74,13 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroid" }
+kotlinx-coroutines-android-v160 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroidVersion" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
+kotlinx-coroutines-core-v160 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCoreVersion" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+retrofit-v290 = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofitVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

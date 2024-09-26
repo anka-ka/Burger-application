@@ -1,16 +1,26 @@
 package com.example.burgerapplication.viewmodel
 
-import android.content.Context
-import androidx.lifecycle.ViewModel
-import com.example.burgerapplication.dto.Burger
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 
-class BurgerViewModel : ViewModel() {
-    fun loadBurgers(context: Context): List<Burger> {
-        val jsonFile = "burgers.json"
-        val inputStream = context.assets.open(jsonFile)
-        val jsonString = inputStream.bufferedReader().use { it.readText() }
-        return Gson().fromJson(jsonString, object : TypeToken<List<Burger>>() {}.type)
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.burgerapplication.dto.Burger
+import com.example.burgerapplication.repository.BurgerRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+@HiltViewModel
+class BurgerViewModel @Inject constructor(private val repository: BurgerRepository) : ViewModel() {
+
+    private val _burgers = MutableLiveData<List<Burger>>()
+    val burgers: LiveData<List<Burger>> get() = _burgers
+
+    fun loadBurgers() {
+        viewModelScope.launch {
+            val burgerList = repository.getBurgers()
+            _burgers.value = burgerList
+        }
     }
 }

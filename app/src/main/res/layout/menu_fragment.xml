@@ -3,9 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@android:color/black"
-    android:padding="36dp">
+    android:padding="36dp"
+    tools:context=".ui.MenuFragment"
+    android:id="@+id/menuFragment">
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/menu"
@@ -13,7 +16,7 @@
         android:layout_width="@dimen/icon_button_size"
         android:layout_height="@dimen/icon_button_size"
         android:layout_marginBottom="@dimen/common_spacing"
-        app:iconTint ="@color/white"
+        app:iconTint="@color/white"
         app:icon="@drawable/menu"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,18 +27,10 @@
         android:layout_width="@dimen/icon_button_size"
         android:layout_height="@dimen/icon_button_size"
         android:layout_marginBottom="@dimen/common_spacing"
-        app:iconTint ="@color/white"
+        app:iconTint="@color/white"
         app:icon="@drawable/bell"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="bottom"
-        app:constraint_referenced_ids="bell, menu" />
 
 
     <TextView
@@ -48,24 +43,22 @@
         android:textColor="@color/white"
         android:textStyle="bold"
         android:textSize="20sp"
-        app:layout_goneMarginTop="40dp"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/barrier" />
+        app:layout_constraintTop_toBottomOf="@id/bell" />
+
     <TextView
         android:id="@+id/title2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/better_burger"
-        app:layout_constraintTop_toBottomOf="@id/title"
         android:textColor="@color/white"
         android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
 
-
-         />
     <androidx.constraintlayout.widget.Barrier
-
         android:id="@+id/barrier2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -83,7 +76,6 @@
         app:icon="@drawable/filter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/barrier2" />
-
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/burgers"
@@ -126,92 +118,72 @@
         app:layout_constraintStart_toEndOf="@id/pasta"
         app:layout_constraintTop_toTopOf="@id/barrier2"
         tools:ignore="SmallSp" />
-    <androidx.constraintlayout.widget.Barrier
 
+    <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="burgers,pasta,salads" />
 
-    <androidx.gridlayout.widget.GridLayout
-        android:id="@+id/productGrid"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/burgerRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="16dp"
-        app:columnCount="2"
-        app:rowCount="2"
         app:layout_constraintTop_toBottomOf="@id/barrier3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        >
-        <LinearLayout
+        app:layout_constraintBottom_toTopOf="@+id/tools"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:listitem="@layout/item_burger" />
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tools"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_gravity="bottom"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/map"
+            style="@style/Widget.Material3.Button.IconButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="8dp"
-            app:layout_columnSpan="1"
-            app:layout_row="0">
+            app:icon="@drawable/map"
+            app:iconTint="?colorOnPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="16dp" />
 
-            <ImageView
-                android:id="@+id/BeefBurger"
-                android:layout_width="150dp"
-                android:layout_height="112dp"
-                android:src="@drawable/image_frame" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/basket"
+            style="@style/Widget.Material3.Button.IconButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/baseline_shopping_basket_24"
+            app:iconTint="?colorOnPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
-            <TextView
-                android:id="@+id/BeefText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/beef_burger"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="14sp" />
-            <TextView
-                android:id="@+id/BeefText2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/beef_with_cheese"
-                android:textColor="@color/grey"
-                android:textSize="12sp" />
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bank"
+            style="@style/Widget.Material3.Button.IconButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/piggy_bank"
+            app:iconTint="?colorOnPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="16dp" />
 
-                <TextView
-                    android:id="@+id/BeefPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/_18_00"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:textSize="14sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/add"
-                    style="@style/Widget.AppTheme.IconButton"
-                    android:layout_width="49dp"
-                    android:layout_height="47dp"
-                    app:icon="@drawable/baseline_add_24"
-                    app:iconTint="@color/white"
-                    app:layout_constraintBottom_toBottomOf="@id/BeefPrice"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/BeefPrice" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-
-
-
-
-
-    </androidx.gridlayout.widget.GridLayout>
-
-
-
-
-
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

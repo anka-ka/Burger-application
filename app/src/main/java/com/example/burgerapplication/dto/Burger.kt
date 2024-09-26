@@ -1,8 +1,9 @@
 package com.example.burgerapplication.dto
 
 data class Burger(
+    val id:Int,
     val name: String,
-    val description: String,
-    val price: String,
+    val shortDescription: String,
+    val price:Float,
     val imageUrl: String
 )
