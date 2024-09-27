@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-
 import com.example.burgerapplication.R
 import com.example.burgerapplication.dto.Burger
 
@@ -29,12 +28,12 @@ class BurgerAdapter : ListAdapter<Burger, BurgerAdapter.BurgerViewHolder>(Burger
         fun bind(burger: Burger) {
             itemView.findViewById<TextView>(R.id.burgerName).text = burger.name
             itemView.findViewById<TextView>(R.id.shortBurgerDescription).text = burger.shortDescription
-            itemView.findViewById<TextView>(R.id.burgerPrice).text = burger.price.toString()
+            itemView.findViewById<TextView>(R.id.burgerPrice).text = burger.price.toFloatOrNull()?.toString()
             Glide.with(itemView.context)
-                .load(burger.imageUrl)
+                .load(burger.imageUrl ?: R.drawable.baseline_error_24)
+                .placeholder(R.drawable.loading)
+                .timeout(30_000)
                 .into(itemView.findViewById<ImageView>(R.id.burgerImage))
-
-
         }
     }
 

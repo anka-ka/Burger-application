@@ -21,4 +21,17 @@
         android:id="@+id/action_previewFragment_to_menuFragment"
         app:destination="@id/menuFragment"/>
 
+        <action
+            android:id="@+id/action_menuFragment_to_offerFragment"
+            app:destination="@id/offerFragment" />
+
+
+    <fragment
+        android:id="@+id/offerFragment"
+        android:name="com.example.burgerapplication.ui.OfferFragment"
+        tools:layout="@layout/special_offer_fragment" />
+    <action
+        android:id="@+id/action_offerFragment_to_menuFragment"
+        app:destination="@id/menuFragment" />
+
 </navigation>

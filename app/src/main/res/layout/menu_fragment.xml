@@ -84,47 +84,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/common_spacing"
-        android:textSize="10sp"
+        android:textSize="11sp"
         android:textColor="@color/white"
         android:text="@string/burger"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/barrier2"
-        tools:ignore="SmallSp" />
+        app:layout_constraintTop_toTopOf="@id/barrier2" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/pasta"
+        android:id="@+id/pizza"
         style="@style/Widget.AppTheme.IconButton"
         app:layout_goneMarginTop="40dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/common_spacing"
-        android:textSize="10sp"
+        android:textSize="11sp"
         android:textColor="@color/white"
-        android:text="@string/pasta"
+        android:text="Pizza"
         app:layout_constraintStart_toEndOf="@id/burgers"
-        app:layout_constraintTop_toTopOf="@id/barrier2"
-        tools:ignore="SmallSp" />
+        app:layout_constraintTop_toTopOf="@id/barrier2" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/salads"
-        style="@style/Widget.AppTheme.IconButton"
-        app:layout_goneMarginTop="40dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/common_spacing"
-        android:textSize="10sp"
-        android:textColor="@color/white"
-        android:text="@string/Salads"
-        app:layout_constraintStart_toEndOf="@id/pasta"
-        app:layout_constraintTop_toTopOf="@id/barrier2"
-        tools:ignore="SmallSp" />
+
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="burgers,pasta,salads" />
+        app:constraint_referenced_ids="burgers,pizza" />
 
 
     <androidx.recyclerview.widget.RecyclerView
