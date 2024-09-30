@@ -68,7 +68,7 @@
                     numberpicker:max="10"
                     numberpicker:value="0"
                     numberpicker:unit="1"
-                    numberpicker:focusable="false"/>
+                    numberpicker:focusable="true"/>
             </LinearLayout>
 
             <TextView
@@ -96,16 +96,16 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/basketButton"
-        style="@style/Widget.AppCompat.Button"
+        style="?attr/materialIconButtonFilledStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="10dp"
+        android:text="@string/add_to_your_basket"
         android:gravity="center"
         app:iconTint="@color/white"
-        android:focusedSearchResultHighlightColor="@color/grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:icon="@drawable/baseline_shopping_basket_24" />
 

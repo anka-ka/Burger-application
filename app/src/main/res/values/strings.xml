@@ -23,4 +23,5 @@
     <string name="pizza">Pizza</string>
     <string name="all_products">All products</string>
     <string name="burger_image">burger Image</string>
+    <string name="add_to_your_basket">Add to your basket</string>
 </resources>
