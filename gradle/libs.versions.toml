@@ -3,6 +3,7 @@ agp = "8.6.0"
 androidxAppcompat = "1.1.0"
 appcompat = "1.7.0"
 appcompatVersion = "1.6.1"
+composeBomVersion = "2022.10.00"
 constraintlayout = "2.1.4"
 converterGson = "2.11.0"
 converterGsonVersion = "2.9.0"
@@ -31,16 +32,20 @@ lifecycleRuntimeKtx = "2.8.5"
 activityCompose = "1.9.2"
 composeBom = "2024.04.01"
 material = "1.12.0"
+meternumberpicker = "1.0.5"
 navigationFragmentKtx = "2.8.1"
+numberpicker = "1.0.7"
 quantitypickerVersion = "1.0.1"
 retrofit = "2.11.0"
 retrofitVersion = "2.9.0"
+scrollablenumberpicker = "0.2.2"
 
 [libraries]
 andanhm-quantitypicker = { module = "com.andanhm:quantitypicker", version.ref = "quantitypickerVersion" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 androidx-appcompat-v110 = { module = "androidx.appcompat:appcompat", version.ref = "androidxAppcompat" }
 androidx-appcompat-v161 = { module = "androidx.appcompat:appcompat", version.ref = "appcompatVersion" }
+androidx-compose-bom-v20221000 = { module = "androidx.compose:compose-bom", version.ref = "composeBomVersion" }
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-gridlayout = { module = "androidx.gridlayout:gridlayout", version.ref = "gridlayout" }
@@ -79,8 +84,11 @@ kotlinx-coroutines-android-v160 = { module = "org.jetbrains.kotlinx:kotlinx-coro
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
 kotlinx-coroutines-core-v160 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCoreVersion" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
+meternumberpicker = { module = "com.alex-zaitsev:meternumberpicker", version.ref = "meternumberpicker" }
+numberpicker = { module = "com.github.travijuu:numberpicker", version.ref = "numberpicker" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit-v290 = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofitVersion" }
+scrollablenumberpicker = { module = "com.michaelmuenzer.android:ScrollableNumberPicker", version.ref = "scrollablenumberpicker" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

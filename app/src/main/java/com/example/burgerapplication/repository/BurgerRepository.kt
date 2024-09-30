@@ -1,5 +1,6 @@
 package com.example.burgerapplication.repository
 
+import androidx.lifecycle.LiveData
 import com.example.burgerapplication.api.BurgerApiService
 import com.example.burgerapplication.dto.Burger
 import javax.inject.Inject
@@ -8,5 +9,9 @@ class BurgerRepository @Inject constructor(private val apiService: BurgerApiServ
 
     suspend fun getBurgers(): List<Burger> {
         return apiService.getBurgers()
+    }
+
+    suspend fun getBurgerById(id: Int): Burger {
+        return apiService.getBurgerById(id)
     }
 }

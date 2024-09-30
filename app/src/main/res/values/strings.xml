@@ -19,4 +19,8 @@
     <string name="longDescription">Burger with a huge pork cutlet, pickled cucumbers, blue onions, grilled vegetables (green beans, bell peppers, carrots), oyster dressing, black cuttlefish ink bun.</string>
     <string name="special_offers">Special offers</string>
     <string name="back">back</string>
+    <string name="total_price">Total price</string>
+    <string name="pizza">Pizza</string>
+    <string name="all_products">All products</string>
+    <string name="burger_image">burger Image</string>
 </resources>

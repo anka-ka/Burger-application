@@ -7,6 +7,7 @@ buildscript {
         google()
         mavenCentral()
         gradlePluginPortal()
+
     }
 
     dependencies {

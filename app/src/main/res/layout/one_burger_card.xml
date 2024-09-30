@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.AppActivity">
+    tools:context=".ui.AppActivity"
+    android:id="@+id/oneBurgerFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -16,7 +17,7 @@
             android:id="@+id/burgerImage"
             android:layout_width="0dp"
             android:layout_height="400dp"
-            android:src="@drawable/image_frame"
+            tools:src="@tools:sample/avatars[2]"
             app:layout_constraintBottom_toTopOf="@id/burgerName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +27,7 @@
             android:id="@+id/burgerName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/beef_burger"
+            tools:text="@tools:sample/lorem[1]"
             android:textColor="@color/white"
             android:textSize="26sp"
             android:textStyle="bold"
@@ -37,7 +38,7 @@
             android:id="@+id/longBurgerDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/longDescription"
+            tools:text="@tools:sample/lorem[40]"
             android:textColor="@color/grey"
             android:textSize="18sp"
             android:paddingBottom="20sp"
@@ -58,27 +59,16 @@
 
             >
 
-            <Button
-                android:id="@+id/decrease_button"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:text="-"
-                android:textColor="@color/white" />
-
-            <NumberPicker
+            <com.travijuu.numberpicker.library.NumberPicker
                 android:id="@+id/number_picker"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"/>
-<!--                android:maxValue="100"-->
-<!--                android:minValue="0"-->
-<!--                android:wrapSelectorWheel="true" />-->
-
-            <Button
-                android:id="@+id/increase_button"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:text="+"
-                android:textColor="@color/white" />
+                android:layout_width="130dp"
+                android:layout_height="40dp"
+                android:min="0"
+                numberpicker:max="10"
+                numberpicker:value="-5"
+                numberpicker:unit="1"
+                numberpicker:focusable="false"
+                numberpicker:custom_layout="@layout/number_picker_custom_layout" />
 
         </LinearLayout>
         <LinearLayout
@@ -95,8 +85,9 @@
             android:id="@+id/totalPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total price"
+            android:text="@string/total_price"
             android:textSize="16sp"
+            android:textColor="@color/grey"
             android:layout_marginEnd="70dp"
            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/longBurgerDescription"/>
@@ -119,7 +110,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/numberPicker"
-            android:layout_marginTop="100dp"
+            android:layout_marginBottom="20dp"
             app:icon="@drawable/baseline_shopping_basket_24"
 
             />

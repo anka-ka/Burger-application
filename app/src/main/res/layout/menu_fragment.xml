@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black"
-    android:padding="36dp"
+    android:padding="12dp"
     tools:context=".ui.MenuFragment"
     android:id="@+id/menuFragment">
 
@@ -22,13 +22,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/bell"
+        android:id="@+id/settings"
         style="@style/Widget.AppTheme.IconButton"
         android:layout_width="@dimen/icon_button_size"
         android:layout_height="@dimen/icon_button_size"
         android:layout_marginBottom="@dimen/common_spacing"
         app:iconTint="@color/white"
-        app:icon="@drawable/bell"
+        app:icon="@drawable/baseline_settings_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,7 +45,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bell" />
+        app:layout_constraintTop_toBottomOf="@id/settings" />
 
     <TextView
         android:id="@+id/title2"
@@ -66,14 +66,14 @@
         app:constraint_referenced_ids="title2" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/filter"
+        android:id="@+id/bell"
         style="@style/Widget.AppTheme.IconButton"
         app:layout_goneMarginTop="40dp"
         android:layout_width="@dimen/icon_button_size"
         android:layout_height="@dimen/icon_button_size"
         android:layout_marginBottom="@dimen/common_spacing"
         app:iconTint ="@color/white"
-        app:icon="@drawable/filter"
+        app:icon="@drawable/bell"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/barrier2" />
 
@@ -99,8 +99,21 @@
         android:layout_marginBottom="@dimen/common_spacing"
         android:textSize="11sp"
         android:textColor="@color/white"
-        android:text="Pizza"
+        android:text="@string/pizza"
         app:layout_constraintStart_toEndOf="@id/burgers"
+        app:layout_constraintTop_toTopOf="@id/barrier2" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/all"
+        style="@style/Widget.AppTheme.IconButton"
+        app:layout_goneMarginTop="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/common_spacing"
+        android:textSize="11sp"
+        android:textColor="@color/white"
+        android:text="@string/all_products"
+        app:layout_constraintStart_toEndOf="@id/pizza"
         app:layout_constraintTop_toTopOf="@id/barrier2" />
 
 

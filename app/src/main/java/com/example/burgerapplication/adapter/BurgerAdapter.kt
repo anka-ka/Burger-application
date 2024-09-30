@@ -12,7 +12,9 @@ import com.bumptech.glide.Glide
 import com.example.burgerapplication.R
 import com.example.burgerapplication.dto.Burger
 
-class BurgerAdapter : ListAdapter<Burger, BurgerAdapter.BurgerViewHolder>(BurgerDiffCallback()) {
+class BurgerAdapter(
+    private val onBurgerClick: (Burger) -> Unit
+) : ListAdapter<Burger, BurgerAdapter.BurgerViewHolder>(BurgerDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BurgerViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_burger, parent, false)
@@ -22,6 +24,11 @@ class BurgerAdapter : ListAdapter<Burger, BurgerAdapter.BurgerViewHolder>(Burger
     override fun onBindViewHolder(holder: BurgerViewHolder, position: Int) {
         val burger = getItem(position)
         holder.bind(burger)
+
+
+        holder.itemView.setOnClickListener {
+            onBurgerClick(burger)
+        }
     }
 
     class BurgerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -31,7 +38,7 @@ class BurgerAdapter : ListAdapter<Burger, BurgerAdapter.BurgerViewHolder>(Burger
             itemView.findViewById<TextView>(R.id.burgerPrice).text = burger.price.toFloatOrNull()?.toString()
             Glide.with(itemView.context)
                 .load(burger.imageUrl ?: R.drawable.baseline_error_24)
-                .placeholder(R.drawable.loading)
+                .placeholder(R.drawable.baseline_settings_suggest_24)
                 .timeout(30_000)
                 .into(itemView.findViewById<ImageView>(R.id.burgerImage))
         }

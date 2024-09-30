@@ -17,10 +17,20 @@ class BurgerViewModel @Inject constructor(private val repository: BurgerReposito
     private val _burgers = MutableLiveData<List<Burger>>()
     val burgers: LiveData<List<Burger>> get() = _burgers
 
+    private val _burger = MutableLiveData<Burger>()
+    val burger: LiveData<Burger> get() = _burger
+
     fun loadBurgers() {
         viewModelScope.launch {
             val burgerList = repository.getBurgers()
             _burgers.value = burgerList
+        }
+    }
+
+    fun loadBurgerById(id: Int) {
+        viewModelScope.launch {
+            val burger = repository.getBurgerById(id)
+            _burger.value = burger
         }
     }
 }

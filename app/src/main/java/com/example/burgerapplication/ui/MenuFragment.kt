@@ -32,6 +32,7 @@ class MenuFragment : Fragment(R.layout.menu_fragment) {
         recyclerView = view.findViewById(R.id.burgerRecyclerView)
         setupRecyclerView()
 
+
         view.findViewById<MaterialButton>(R.id.bell).setOnClickListener {
             findNavController().navigate(R.id.action_menuFragment_to_offerFragment)
         }
@@ -40,12 +41,22 @@ class MenuFragment : Fragment(R.layout.menu_fragment) {
         burgerViewModel.burgers.observe(viewLifecycleOwner) { burgers ->
             (recyclerView.adapter as BurgerAdapter).submitList(burgers)
         }
+
+
     }
 
     private fun setupRecyclerView() {
         recyclerView.apply {
             layoutManager = GridLayoutManager(context, 2)
-            adapter = BurgerAdapter()
+            adapter = BurgerAdapter { burger ->
+                val bundle = Bundle().apply {
+                    putInt(
+                        "id",
+                        burger.id
+                    )
+                }
+                findNavController().navigate(R.id.oneBurgerFragment, bundle)
+            }
         }
     }
 }

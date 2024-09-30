@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.daemon.client.KotlinCompilerClient.compile
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -43,6 +45,8 @@ android {
 
     buildFeatures {
         compose = true
+        viewBinding = true
+
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -67,10 +71,7 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation ("com.google.dagger:hilt-android:2.48")
     kapt ("com.google.dagger:hilt-compiler:2.48")
-
-
-
-
+    implementation (libs.numberpicker)
 
 
     implementation(libs.androidx.core.ktx)
