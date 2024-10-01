@@ -35,10 +35,17 @@
         app:destination="@id/menuFragment" />
     <fragment
         android:id="@+id/oneBurgerFragment"
-        android:name="com.example.burgerapplication.ui.OneBurgerFragment"
+        android:name="com.example.burgerapplication.ui.OneProductFragment"
         tools:layout="@layout/one_burger_card"/>
     <action
         android:id="@+id/action_menuFragment_to_oneBurgerFragment"
         app:destination="@+id/oneBurgerFragment"/>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.burgerapplication.ui.SettingsFragment"
+        tools:layout="@layout/settings"/>
+    <action
+        android:id="@+id/action_menuFragment_to_settingsFragment"
+        app:destination="@+id/settingsFragment"/>
 
 </navigation>

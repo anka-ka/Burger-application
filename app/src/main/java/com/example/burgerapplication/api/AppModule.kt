@@ -23,7 +23,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideBurgerApiService(retrofit: Retrofit): BurgerApiService {
-        return retrofit.create(BurgerApiService::class.java)
+    fun provideProductApiService(retrofit: Retrofit): ProductApiService {
+        return retrofit.create(ProductApiService::class.java)
     }
 }

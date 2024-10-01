@@ -1,0 +1,64 @@
+package com.example.burgerapplication.viewmodel
+
+
+import android.app.Application
+import android.content.Context
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.burgerapplication.dto.Product
+import com.example.burgerapplication.repository.ProductRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+@HiltViewModel
+class ProductViewModel @Inject constructor(
+    private val repository: ProductRepository,
+    private val context: Application) : ViewModel() {
+
+    private val _products = MutableLiveData<List<Product>>()
+    val burgers: LiveData<List<Product>> get() = _products
+
+    private val _product = MutableLiveData<Product>()
+    val product: LiveData<Product> get() = _product
+
+    fun loadProducts() {
+        viewModelScope.launch {
+            val productList = repository.getProducts()
+            _products.value = productList
+        }
+    }
+
+    fun loadProductById(id: Int) {
+        viewModelScope.launch {
+            val product = repository.getProductById(id)
+            _product.value = product
+        }
+    }
+
+    fun loadProductsByType(type: String) {
+        viewModelScope.launch {
+            val productList = repository.getProductsByType(type)
+            _products.value = productList
+        }
+    }
+    fun saveLanguagePreference(language: String) {
+        val sharedPreferences = context.getSharedPreferences("app_settings", Context.MODE_PRIVATE)
+        sharedPreferences.edit().putString("selected_language", language).apply()
+    }
+
+    private fun getSavedLanguage(): String {
+        val sharedPreferences = context.getSharedPreferences("app_settings", Context.MODE_PRIVATE)
+        return sharedPreferences.getString("selected_language", "en") ?: "en"
+    }
+
+    fun loadProductsBasedOnLanguage() {
+        viewModelScope.launch {
+            val language = getSavedLanguage()
+            val productList = repository.getProductsBasedOnLanguage(language)
+            _products.value = productList
+        }
+    }
+}

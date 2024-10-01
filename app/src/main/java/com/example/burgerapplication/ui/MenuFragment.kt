@@ -1,6 +1,6 @@
 package com.example.burgerapplication.ui
 
-import com.example.burgerapplication.adapter.BurgerAdapter
+import com.example.burgerapplication.adapter.ProductAdapter
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -9,8 +9,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.burgerapplication.R
-import com.example.burgerapplication.repository.BurgerRepository
-import com.example.burgerapplication.viewmodel.BurgerViewModel
+import com.example.burgerapplication.repository.ProductRepository
+import com.example.burgerapplication.viewmodel.ProductViewModel
 import com.google.android.material.button.MaterialButton
 
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,9 +22,9 @@ class MenuFragment : Fragment(R.layout.menu_fragment) {
     private lateinit var recyclerView: RecyclerView
 
     @Inject
-    lateinit var repository: BurgerRepository
+    lateinit var repository: ProductRepository
 
-    private val burgerViewModel: BurgerViewModel by viewModels()
+    private val productViewModel: ProductViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,9 +37,26 @@ class MenuFragment : Fragment(R.layout.menu_fragment) {
             findNavController().navigate(R.id.action_menuFragment_to_offerFragment)
         }
 
-        burgerViewModel.loadBurgers()
-        burgerViewModel.burgers.observe(viewLifecycleOwner) { burgers ->
-            (recyclerView.adapter as BurgerAdapter).submitList(burgers)
+        view.findViewById<MaterialButton>(R.id.settings).setOnClickListener {
+            findNavController().navigate(R.id.action_menuFragment_to_settingsFragment)
+        }
+
+        productViewModel.loadProducts()
+
+        view.findViewById<MaterialButton>(R.id.burgers).setOnClickListener {
+            productViewModel.loadProductsByType("burger")
+        }
+
+        view.findViewById<MaterialButton>(R.id.pizza).setOnClickListener {
+            productViewModel.loadProductsByType("pizza")
+        }
+
+        view.findViewById<MaterialButton>(R.id.all).setOnClickListener {
+            productViewModel.loadProductsBasedOnLanguage()
+        }
+
+        productViewModel.burgers.observe(viewLifecycleOwner) { burgers ->
+            (recyclerView.adapter as ProductAdapter).submitList(burgers)
         }
 
 
@@ -48,7 +65,7 @@ class MenuFragment : Fragment(R.layout.menu_fragment) {
     private fun setupRecyclerView() {
         recyclerView.apply {
             layoutManager = GridLayoutManager(context, 2)
-            adapter = BurgerAdapter { burger ->
+            adapter = ProductAdapter { burger ->
                 val bundle = Bundle().apply {
                     putInt(
                         "id",

@@ -9,16 +9,16 @@ import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.example.burgerapplication.R
 import com.example.burgerapplication.databinding.OneBurgerCardBinding
-import com.example.burgerapplication.dto.Burger
-import com.example.burgerapplication.viewmodel.BurgerViewModel
+import com.example.burgerapplication.dto.Product
+import com.example.burgerapplication.viewmodel.ProductViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class OneBurgerFragment: Fragment(R.layout.one_burger_card) {
+class OneProductFragment: Fragment(R.layout.one_burger_card) {
 
     private lateinit var binding: OneBurgerCardBinding
-    private val burgerViewModel: BurgerViewModel by viewModels()
+    private val productViewModel: ProductViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,18 +34,18 @@ class OneBurgerFragment: Fragment(R.layout.one_burger_card) {
 
         val burgerId = arguments?.getInt("id") ?: return
 
-        burgerViewModel.loadBurgerById(burgerId)
+        productViewModel.loadProductById(burgerId)
 
-        burgerViewModel.burger.observe(viewLifecycleOwner) { burger ->
+        productViewModel.product.observe(viewLifecycleOwner) { burger ->
             burger?.let { bindBurger(it) }
         }
     }
-    private fun bindBurger(burger: Burger) {
+    private fun bindBurger(product: Product) {
 
-        binding.burgerName.text = burger.name
-        binding.longBurgerDescription.text = burger.longDescription
+        binding.burgerName.text = product.name
+        binding.longBurgerDescription.text = product.longDescription
         Glide.with(this)
-            .load(burger.imageUrl?: R.drawable.baseline_error_24)
+            .load(product.imageUrl?: R.drawable.baseline_error_24)
             .placeholder(R.drawable.baseline_settings_suggest_24)
             .timeout(30_000)
             .into(binding.burgerImage)

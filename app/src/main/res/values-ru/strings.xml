@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Burger application</string>
+    <string name="menu">menu</string>
+    <string name="bell">bell</string>
+    <string name="every_bite_a">Каждый укус - </string>
+    <string name="better_burger">Вкус совершенства в каждом бургере!</string>
+    <string name="burger">Бургеры</string>
+    <string name="go">начать</string>
+    <string name="let_s_fix_it" >Давайте это исправим</string>
+    <string name="are_you_hungry" >Вы голодны?</string>
+    <string name="special_offers" >Специальные предложения</string>
+    <string name="back">back</string>
+    <string name="total_price" >Конечная цена</string>
+    <string name="pizza" >Пицца</string>
+    <string name="all_products" >Все продукты</string>
+    <string name="burger_image">burger Image</string>
+    <string name="add_to_your_basket" >Добавьте в вашу корзину</string>
+    <string name="save" >Сохранить</string>
+    <string name="languages" >Языки</string>
+    <string name="english" >Английский</string>
+    <string name="russian">Русский</string>
+    <string name="themes">Темы</string>
+    <string name="dark_theme">Тёмная тема</string>
+    <string name="light_theme">Светлая тема</string>
+    <string name="set_it_up_as_you_like" >Настройте как вам удобно</string>
+
+</resources>

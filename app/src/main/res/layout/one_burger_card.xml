@@ -67,7 +67,7 @@
                     numberpicker:min="0"
                     numberpicker:max="10"
                     numberpicker:value="0"
-                    numberpicker:unit="1"
+                    numberpicker:unit="0"
                     numberpicker:focusable="true"/>
             </LinearLayout>
 
@@ -87,7 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="70dp"
-                android:text="@string/_18_00"
+                tools:text="@tools:sample/lorem[1]"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -104,6 +104,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="10dp"
         android:text="@string/add_to_your_basket"
+        android:textColor="@color/white"
         android:gravity="center"
         app:iconTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
