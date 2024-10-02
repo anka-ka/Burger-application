@@ -16,6 +16,7 @@ class ProductAdapter(
     private val onBurgerClick: (Product) -> Unit
 ) : ListAdapter<Product, ProductAdapter.ProductViewHolder>(BurgerDiffCallback()) {
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_burger, parent, false)
         return ProductViewHolder(view)
@@ -42,6 +43,7 @@ class ProductAdapter(
                 .timeout(30_000)
                 .into(itemView.findViewById<ImageView>(R.id.burgerImage))
         }
+
     }
 
     class BurgerDiffCallback : DiffUtil.ItemCallback<Product>() {

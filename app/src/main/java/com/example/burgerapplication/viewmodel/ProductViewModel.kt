@@ -11,6 +11,7 @@ import com.example.burgerapplication.dto.Product
 import com.example.burgerapplication.repository.ProductRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
@@ -33,26 +34,38 @@ class ProductViewModel @Inject constructor(
 
     fun loadProductById(id: Int) {
         viewModelScope.launch {
-            val product = repository.getProductById(id)
+            val language = getSavedLanguage()
+            val product = if (language == "ru") {
+                repository.getProductByIdInRussian(id)
+            } else {
+                repository.getProductById(id)
+            }
             _product.value = product
         }
     }
 
     fun loadProductsByType(type: String) {
         viewModelScope.launch {
-            val productList = repository.getProductsByType(type)
+            val language = getSavedLanguage()
+            val productList = if (language == "ru") {
+                repository.getProductsByTypeInRussian(type)
+            } else {
+                repository.getProductsByType(type)
+            }
             _products.value = productList
         }
     }
+
     fun saveLanguagePreference(language: String) {
         val sharedPreferences = context.getSharedPreferences("app_settings", Context.MODE_PRIVATE)
         sharedPreferences.edit().putString("selected_language", language).apply()
     }
 
-    private fun getSavedLanguage(): String {
+    fun getSavedLanguage(): String {
         val sharedPreferences = context.getSharedPreferences("app_settings", Context.MODE_PRIVATE)
         return sharedPreferences.getString("selected_language", "en") ?: "en"
     }
+
 
     fun loadProductsBasedOnLanguage() {
         viewModelScope.launch {

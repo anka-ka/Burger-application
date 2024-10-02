@@ -70,8 +70,10 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation ("com.google.dagger:hilt-android:2.48")
+    implementation(libs.androidx.espresso.core)
     kapt ("com.google.dagger:hilt-compiler:2.48")
     implementation (libs.numberpicker)
+
 
 
     implementation(libs.androidx.core.ktx)

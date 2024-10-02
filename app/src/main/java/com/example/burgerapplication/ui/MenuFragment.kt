@@ -41,7 +41,7 @@ class MenuFragment : Fragment(R.layout.menu_fragment) {
             findNavController().navigate(R.id.action_menuFragment_to_settingsFragment)
         }
 
-        productViewModel.loadProducts()
+        productViewModel.loadProductsBasedOnLanguage()
 
         view.findViewById<MaterialButton>(R.id.burgers).setOnClickListener {
             productViewModel.loadProductsByType("burger")

@@ -43,6 +43,7 @@ class OneProductFragment: Fragment(R.layout.one_burger_card) {
     private fun bindBurger(product: Product) {
 
         binding.burgerName.text = product.name
+        binding.burgerPrice.text= product.price
         binding.longBurgerDescription.text = product.longDescription
         Glide.with(this)
             .load(product.imageUrl?: R.drawable.baseline_error_24)

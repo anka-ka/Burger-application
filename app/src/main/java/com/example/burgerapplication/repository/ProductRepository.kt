@@ -10,12 +10,20 @@ class ProductRepository @Inject constructor(private val apiService: ProductApiSe
         return apiService.getProducts()
     }
 
+    suspend fun getProductByIdInRussian(id: Int): Product {
+        return apiService.getProductByIdInRussian(id)
+    }
+
     suspend fun getProductById(id: Int): Product {
         return apiService.getProductById(id)
     }
 
     suspend fun getProductsByType(type: String): List<Product> {
         return apiService.getProducts().filter { it.type == type }
+    }
+
+    suspend fun getProductsByTypeInRussian(type: String): List<Product> {
+        return apiService.getProductsInRussian().filter { it.type == type }
     }
 
     suspend fun getProductsBasedOnLanguage(language: String): List<Product> {
