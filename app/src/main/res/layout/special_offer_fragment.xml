@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="?attr/colorPrimary"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +23,7 @@
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             app:icon="@drawable/baseline_arrow_back_24"
-            app:iconTint="@color/white"
+            app:iconTint="?attr/colorOnPrimary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,7 +33,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/special_offers"
                     android:textSize="40sp"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorOnPrimary"
                     android:gravity="center"
                     android:paddingTop="40dp"
                     android:paddingBottom="40dp"

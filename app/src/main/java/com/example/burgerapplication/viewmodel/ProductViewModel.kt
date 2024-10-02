@@ -11,7 +11,6 @@ import com.example.burgerapplication.dto.Product
 import com.example.burgerapplication.repository.ProductRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel

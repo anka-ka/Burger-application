@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.BurgerApplication" parent="Theme.Material3.DayNight.NoActionBar" />
+    <style name="Theme.BurgerApplication" parent="Theme.Material3.DayNight.NoActionBar" >
+
+        <item name="colorPrimary" >@color/white</item>
+        <item name="colorPrimaryVariant" >@color/grey
+        </item>
+        <item name="colorOnPrimary">@color/black
+        </item>
+
+
+        <item name="colorSecondary">@color/grey
+        </item>
+        <item name="colorSecondaryVariant">@color/grey
+        </item>
+        <item name="colorOnSecondary">@color/black
+        </item>
+
+
+        <item name="android:statusBarColor" >?attr/colorPrimaryVariant
+        </item>
+
+
+    </style>
     <item name="colorControlNormal" type="color">@color/white</item>
 </resources>

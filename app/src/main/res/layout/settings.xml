@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/settingsFragment"
+    android:background="?attr/colorPrimary"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
@@ -11,6 +12,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:textColor="?attr/colorOnPrimary"
         android:paddingBottom="20dp"
         android:paddingTop="20sp"
         android:gravity="center"
@@ -21,6 +23,7 @@
         android:id="@+id/label_languages"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="?attr/colorOnPrimary"
         android:text="@string/languages"
         android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@id/settings_title"
@@ -40,12 +43,14 @@
             android:id="@+id/radio_english"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="?attr/colorOnPrimary"
             android:text="@string/english" />
 
         <RadioButton
             android:id="@+id/radio_russian"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="?attr/colorOnPrimary"
             android:text="@string/russian" />
 
     </RadioGroup>
@@ -54,6 +59,7 @@
         android:id="@+id/label_themes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="?attr/colorOnPrimary"
         android:text="@string/themes"
         android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@id/radio_group_languages"
@@ -73,12 +79,14 @@
             android:id="@+id/radio_dark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="?attr/colorOnPrimary"
             android:text="@string/dark_theme" />
 
         <RadioButton
             android:id="@+id/radio_light"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="?attr/colorOnPrimary"
             android:text="@string/light_theme" />
 
     </RadioGroup>
@@ -93,9 +101,9 @@
         android:layout_marginBottom="10dp"
         android:text="@string/save"
         android:textSize="20sp"
-        android:textColor="@color/white"
+        android:textColor="?attr/colorOnPrimary"
         android:gravity="center"
-        app:iconTint="@color/white"
+        android:background="?attr/colorPrimaryVariant"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         />

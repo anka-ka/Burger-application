@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.AppActivity"
-    android:background="@color/black">
+    android:background="?attr/colorPrimary">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/black"
+            android:background="?attr/colorPrimary"
             android:padding="16dp">
 
             <ImageView
@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="@tools:sample/lorem[1]"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="26sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="@tools:sample/lorem[40]"
-                android:textColor="@color/grey"
+                android:textColor="?attr/colorPrimaryVariant"
                 android:textSize="18sp"
                 android:paddingBottom="20sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/total_price"
                 android:textSize="16sp"
-                android:textColor="@color/grey"
+                android:textColor="?attr/colorPrimaryVariant"
                 android:layout_marginEnd="70dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/longBurgerDescription" />
@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="70dp"
                 tools:text="@tools:sample/lorem[1]"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -102,7 +102,7 @@
         android:layout_marginBottom="10dp"
         android:gravity="center"
         app:iconTint="@color/white"
-        android:focusedSearchResultHighlightColor="@color/grey"
+        android:focusedSearchResultHighlightColor="?attr/colorPrimaryVariant"
         app:layout_constraintEnd_toEndOf="parent"
 
         app:icon="@drawable/baseline_shopping_basket_24"
