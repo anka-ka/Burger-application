@@ -56,5 +56,15 @@
     <action
         android:id="@+id/action_oneBurgerFragment_to_settingsFragment"
         app:destination="@+id/settingsFragment"/>
+    <fragment
+        android:id="@+id/loginAndPasswordFragment"
+        android:name="com.example.burgerapplication.ui.LoginAndPasswordFragment"
+        tools:layout="@layout/login_and_password_fragment"/>
+    <action
+        android:id="@+id/action_loginAndPassordFragment_to_menuFragment"
+        app:destination="@id/menuFragment"/>
+    <action
+        android:id="@+id/action_appActivity_to_loginAndPasswordFragment"
+        app:destination="@id/loginAndPasswordFragment"/>
 
 </navigation>

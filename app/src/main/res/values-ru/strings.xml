@@ -25,5 +25,10 @@
     <string name="dark_theme">Тёмная тема</string>
     <string name="light_theme">Светлая тема</string>
     <string name="set_it_up_as_you_like" >Настройте как вам удобно</string>
+    <string name="sign_in">Войти</string>
+    <string name="password">Пароль</string>
+    <string name="login">Логин</string>
+    <string name="sign_up">Зарегистрироваться</string>
+    <string name="logout">Выйти</string>
 
 </resources>

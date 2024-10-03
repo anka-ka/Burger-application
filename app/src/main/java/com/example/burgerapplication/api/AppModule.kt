@@ -1,5 +1,7 @@
 package com.example.burgerapplication.api
 
+import com.example.burgerapplication.auth.AppAuth
+import com.travijuu.numberpicker.library.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -23,4 +23,9 @@
     <string name="dark_theme">Dark theme</string>
     <string name="light_theme">Light theme</string>
     <string name="set_it_up_as_you_like" >Set it up as you like</string>
+    <string name="sign_in">Sign In</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign up</string>
+    <string name="logout">Logout</string>
 </resources>

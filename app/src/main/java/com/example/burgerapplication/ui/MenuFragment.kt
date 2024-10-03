@@ -4,15 +4,16 @@ import com.example.burgerapplication.adapter.ProductAdapter
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.burgerapplication.R
+import com.example.burgerapplication.auth.AppAuth
 import com.example.burgerapplication.repository.ProductRepository
 import com.example.burgerapplication.viewmodel.ProductViewModel
 import com.google.android.material.button.MaterialButton
-
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -24,7 +25,10 @@ class MenuFragment : Fragment(R.layout.menu_fragment) {
     @Inject
     lateinit var repository: ProductRepository
 
-    private val productViewModel: ProductViewModel by viewModels()
+    @Inject
+    lateinit var appAuth: AppAuth
+
+    private val productViewModel: ProductViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -59,6 +63,9 @@ class MenuFragment : Fragment(R.layout.menu_fragment) {
             (recyclerView.adapter as ProductAdapter).submitList(burgers)
         }
 
+        view.findViewById<MaterialButton>(R.id.menu).setOnClickListener {
+            productViewModel.onMenuButtonClick()
+        }
 
     }
 

@@ -3,6 +3,7 @@ package com.example.burgerapplication.viewmodel
 
 import android.app.Application
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -23,6 +24,9 @@ class ProductViewModel @Inject constructor(
 
     private val _product = MutableLiveData<Product>()
     val product: LiveData<Product> get() = _product
+
+    private val _menuButtonClickEvent = MutableLiveData<Unit>()
+    val menuButtonClickEvent: LiveData<Unit> get() = _menuButtonClickEvent
 
     fun loadProducts() {
         viewModelScope.launch {
@@ -87,5 +91,11 @@ class ProductViewModel @Inject constructor(
             val productList = repository.getProductsBasedOnLanguage(language)
             _products.value = productList
         }
+    }
+
+
+    fun onMenuButtonClick() {
+        Log.d("ProductViewModel", "Menu button clicked in ViewModel")
+        _menuButtonClickEvent.value = Unit
     }
 }
