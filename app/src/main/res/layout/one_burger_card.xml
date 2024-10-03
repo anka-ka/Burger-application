@@ -19,6 +19,28 @@
             android:background="?attr/colorPrimary"
             android:padding="16dp">
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/backToMenu"
+                style="@style/Widget.AppTheme.IconButton"
+                android:layout_width="@dimen/icon_button_size"
+                android:layout_height="@dimen/icon_button_size"
+                android:layout_marginBottom="@dimen/common_spacing"
+                app:iconTint="?attr/colorOnPrimary"
+                app:icon="@drawable/baseline_arrow_back_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/settingsOnOneProduct"
+                style="@style/Widget.AppTheme.IconButton"
+                android:layout_width="@dimen/icon_button_size"
+                android:layout_height="@dimen/icon_button_size"
+                android:layout_marginBottom="@dimen/common_spacing"
+                app:iconTint="?attr/colorOnPrimary"
+                app:icon="@drawable/baseline_settings_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <ImageView
                 android:id="@+id/burgerImage"
                 android:layout_width="0dp"
@@ -28,7 +50,8 @@
                 app:layout_constraintBottom_toTopOf="@id/burgerName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/backToMenu" />
+
 
             <TextView
                 android:id="@+id/burgerName"

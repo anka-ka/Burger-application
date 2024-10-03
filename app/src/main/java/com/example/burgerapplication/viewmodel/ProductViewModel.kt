@@ -65,6 +65,21 @@ class ProductViewModel @Inject constructor(
         return sharedPreferences.getString("selected_language", "en") ?: "en"
     }
 
+    fun saveThemePreference(theme: String) {
+        val sharedPreferences = context.getSharedPreferences("app_settings", Context.MODE_PRIVATE)
+        sharedPreferences.edit().putString("selected_theme", theme).apply()
+    }
+
+    fun getSavedTheme(): String {
+        val sharedPreferences = context.getSharedPreferences("app_settings", Context.MODE_PRIVATE)
+        return sharedPreferences.getString("selected_theme", "light") ?: "light"
+    }
+
+
+    fun updateTheme(theme: String) {
+        repository.updateTheme(theme)
+    }
+
 
     fun loadProductsBasedOnLanguage() {
         viewModelScope.launch {

@@ -6,9 +6,11 @@ import android.widget.Button
 import android.widget.RadioGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.burgerapplication.R
 import com.example.burgerapplication.api.ProductApiService
 import com.example.burgerapplication.viewmodel.ProductViewModel
+import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Locale
 import javax.inject.Inject
@@ -26,20 +28,34 @@ class SettingsFragment: Fragment(R.layout.settings) {
 
         val saveButton: Button = view.findViewById(R.id.save_settings)
         val radioGroupLanguages: RadioGroup = view.findViewById(R.id.radio_group_languages)
+        val radioGroupThemes: RadioGroup = view.findViewById(R.id.radio_group_themes)
+
+        view.findViewById<MaterialButton>(R.id.backMenu).setOnClickListener {
+            findNavController().navigate(R.id.action_settingsFragment_to_menuFragment)
+        }
 
         saveButton.setOnClickListener {
             val selectedLanguage = when (radioGroupLanguages.checkedRadioButtonId) {
                 R.id.radio_russian -> "ru"
                 R.id.radio_english -> "en"
-                else -> {"en"
+                else -> {
+                    "en"
                 }
             }
+            val selectedTheme = when (radioGroupThemes.checkedRadioButtonId) {
+                R.id.radio_dark -> "dark"
+                R.id.radio_light -> "light"
+                else -> {"dark"
+                }
+            }
+            productViewModel.saveThemePreference(selectedTheme)
 
             productViewModel.saveLanguagePreference(selectedLanguage)
 
             productViewModel.loadProductsBasedOnLanguage()
 
             updateLocale(selectedLanguage)
+            productViewModel.updateTheme(selectedTheme)
         }
     }
 

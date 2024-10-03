@@ -1,8 +1,10 @@
 package com.example.burgerapplication.ui
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.example.burgerapplication.R
@@ -22,6 +24,14 @@ class AppActivity : AppCompatActivity(R.layout.app_actvity) {
         applyLocale(productViewModel.getSavedLanguage())
 
         val navController = findNavController(R.id.nav_host_fragment)
+
+        val sharedPreferences = getSharedPreferences("app_settings", Context.MODE_PRIVATE)
+        val selectedTheme = sharedPreferences.getString("selected_theme", "light")
+
+        when (selectedTheme) {
+            "dark" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            "light" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
     }
 
     private fun applyLocale(language: String) {

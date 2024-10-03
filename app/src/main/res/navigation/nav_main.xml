@@ -47,5 +47,14 @@
     <action
         android:id="@+id/action_menuFragment_to_settingsFragment"
         app:destination="@+id/settingsFragment"/>
+    <action
+        android:id="@+id/action_settingsFragment_to_menuFragment"
+        app:destination="@+id/menuFragment"/>
+    <action
+        android:id="@+id/action_oneBurgerFragment_to_menuFragment"
+        app:destination="@+id/menuFragment"/>
+    <action
+        android:id="@+id/action_oneBurgerFragment_to_settingsFragment"
+        app:destination="@+id/settingsFragment"/>
 
 </navigation>

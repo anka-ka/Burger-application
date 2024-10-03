@@ -1,5 +1,6 @@
 package com.example.burgerapplication.repository
 
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.burgerapplication.api.ProductApiService
 import com.example.burgerapplication.dto.Product
 import javax.inject.Inject
@@ -31,6 +32,13 @@ class ProductRepository @Inject constructor(private val apiService: ProductApiSe
             apiService.getProductsInRussian()
         } else {
             apiService.getProducts()
+        }
+    }
+
+    fun updateTheme(theme: String) {
+        when (theme) {
+            "dark" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            "light" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
     }
 }

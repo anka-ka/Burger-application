@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.burgerapplication.R
 import com.example.burgerapplication.databinding.OneBurgerCardBinding
 import com.example.burgerapplication.dto.Product
 import com.example.burgerapplication.viewmodel.ProductViewModel
+import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -38,6 +40,13 @@ class OneProductFragment: Fragment(R.layout.one_burger_card) {
 
         productViewModel.product.observe(viewLifecycleOwner) { burger ->
             burger?.let { bindBurger(it) }
+        }
+
+        binding.backToMenu?.setOnClickListener {
+            findNavController().navigate(R.id.action_oneBurgerFragment_to_menuFragment)
+        }
+        binding.settingsOnOneProduct?.setOnClickListener {
+            findNavController().navigate(R.id.action_oneBurgerFragment_to_settingsFragment)
         }
     }
     private fun bindBurger(product: Product) {
