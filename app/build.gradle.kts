@@ -73,6 +73,8 @@ dependencies {
     implementation(libs.androidx.espresso.core)
     kapt ("com.google.dagger:hilt-compiler:2.48")
     implementation (libs.numberpicker)
+    implementation ("com.github.bumptech.glide:glide:4.14.2")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.14.2")
 
 
 

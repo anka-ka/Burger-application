@@ -30,5 +30,8 @@
     <string name="login">Логин</string>
     <string name="sign_up">Зарегистрироваться</string>
     <string name="logout">Выйти</string>
+    <string name="auth_error">Ошибка авторизации. Попробуйте снова.</string>
+    <string name="not_auth">Вы не авторизированы.</string>
+
 
 </resources>

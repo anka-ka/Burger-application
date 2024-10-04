@@ -8,6 +8,8 @@ import com.example.burgerapplication.dto.Token
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.Path
 
@@ -17,9 +19,6 @@ interface ProductApiService {
 
     @GET("api/products?lang=ru")
     suspend fun getProductsInRussian(): List<Product>
-
-    @GET("offers")
-    suspend fun getOffers(): List<Offer>
 
     @GET("api/product/{id}?lang=en")
     suspend fun getProductById(@Path("id") id: Int): Product
@@ -31,4 +30,14 @@ interface ProductApiService {
     suspend fun authenticate(
         @Body credentials: LoginRequest
     ): Response<Token>
+
+    @GET("api/notifications?lang=en")
+    suspend fun getOffers(
+        @Header("Authorization") token: String
+    ): Response<List<Offer>>
+
+    @GET("api/notifications?lang=ru")
+    suspend fun getOffersInRussian(
+        @Header("Authorization") token: String
+    ): Response<List<Offer>>
 }

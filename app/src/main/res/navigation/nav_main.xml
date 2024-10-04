@@ -66,5 +66,8 @@
     <action
         android:id="@+id/action_appActivity_to_loginAndPasswordFragment"
         app:destination="@id/loginAndPasswordFragment"/>
+    <action
+        android:id="@+id/action_offerFragment_to_loginAndPasswordFragment"
+        app:destination="@+id/loginAndPasswordFragment"/>
 
 </navigation>

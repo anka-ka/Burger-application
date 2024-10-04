@@ -9,7 +9,8 @@ import javax.inject.Inject
 class UserRepository @Inject constructor (private val apiService: ProductApiService) {
 
     suspend fun authenticate(login: String, password: String): Response<Token> {
-        val credentials = LoginRequest(login, password)
+        val credentials = LoginRequest(username = login, password = password)
         return apiService.authenticate(credentials)
+
     }
 }

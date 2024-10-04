@@ -53,4 +53,15 @@ class AppAuth @Inject constructor(
         _data.value = null
 
     }
+
+    @Synchronized
+    fun isAuthenticated(): Boolean {
+        return _data.value?.token != null
+    }
+
+
+    @Synchronized
+    fun getAuthToken(): String? {
+        return _data.value?.token
+    }
 }

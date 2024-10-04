@@ -28,4 +28,6 @@
     <string name="login">Login</string>
     <string name="sign_up">Sign up</string>
     <string name="logout">Logout</string>
+    <string name="auth_error">Authorization error. Try again.</string>
+    <string name="not_auth">You are not authorized.</string>
 </resources>

@@ -27,7 +27,7 @@ class OfferAdapter : RecyclerView.Adapter<OfferAdapter.OfferViewHolder>() {
         private val descriptionTextView: TextView = itemView.findViewById(R.id.offerDescription)
 
         fun bind(offer: Offer) {
-            descriptionTextView.text = offer.offerDescription
+            descriptionTextView.text = offer.description
 
         }
     }
