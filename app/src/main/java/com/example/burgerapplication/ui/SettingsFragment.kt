@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.burgerapplication.R
 import com.example.burgerapplication.api.ProductApiService
+import com.example.burgerapplication.viewmodel.OfferViewModel
 import com.example.burgerapplication.viewmodel.ProductViewModel
 import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,6 +23,8 @@ class SettingsFragment: Fragment(R.layout.settings) {
     lateinit var productApiService: ProductApiService
 
     private val productViewModel: ProductViewModel by viewModels()
+
+    private val offerViewModel:OfferViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -53,6 +56,8 @@ class SettingsFragment: Fragment(R.layout.settings) {
             productViewModel.saveLanguagePreference(selectedLanguage)
 
             productViewModel.loadProductsBasedOnLanguage()
+
+            offerViewModel.loadOffersBasedOnLanguage()
 
             updateLocale(selectedLanguage)
             productViewModel.updateTheme(selectedTheme)

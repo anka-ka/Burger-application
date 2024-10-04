@@ -28,7 +28,7 @@ class OfferFragment: Fragment(R.layout.special_offer_fragment) {
         setupRecyclerView()
 
         if (appAuth.isAuthenticated()) {
-            offerViewModel.loadOffers()
+            offerViewModel.loadOffersBasedOnLanguage()
         } else {
             Toast.makeText(requireContext(), "You are not logged in", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_offerFragment_to_loginAndPasswordFragment)

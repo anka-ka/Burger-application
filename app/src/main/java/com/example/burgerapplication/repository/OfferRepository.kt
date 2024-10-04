@@ -17,4 +17,12 @@ class OfferRepository @Inject constructor(
             throw HttpException(response)
         }
     }
+    suspend fun getOffersInRussian(token: String): List<Offer> {
+        val response = productApiService.getOffersInRussian("Bearer $token")
+        if (response.isSuccessful) {
+            return response.body() ?: emptyList()
+        } else {
+            throw HttpException(response)
+        }
+    }
 }

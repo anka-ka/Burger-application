@@ -12,8 +12,7 @@ import javax.inject.Singleton
 
 @Singleton
 class AppAuth @Inject constructor(
-    @ApplicationContext
-    private val context: Context,
+    @ApplicationContext val context: Context,
     ) {
 
     private val ID_KEY = "ID_KEY"

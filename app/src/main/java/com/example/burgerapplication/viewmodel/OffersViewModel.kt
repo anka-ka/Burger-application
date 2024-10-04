@@ -1,5 +1,6 @@
 package com.example.burgerapplication.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -24,23 +25,32 @@ class OfferViewModel @Inject constructor(
     private val _authError = MutableLiveData<String>()
     val authError: LiveData<String> = _authError
 
-    fun loadOffers() {
+    fun loadOffersBasedOnLanguage() {
         viewModelScope.launch {
             if (appAuth.isAuthenticated()) {
                 try {
                     val authToken = appAuth.getAuthToken()
                     if (authToken != null) {
-                        val offerList = repository.getOffers(authToken)
+                        val currentLanguage = getCurrentLanguage()
+                        val offerList = if (currentLanguage == "ru") {
+                            repository.getOffersInRussian(authToken)
+                        } else {
+                            repository.getOffers(authToken)
+                        }
                         _offers.postValue(offerList)
                     } else {
                         _authError.postValue("Ошибка авторизации. Попробуйте снова.")
                     }
                 } catch (e: Exception) {
-                    _authError.postValue("Ошибка авторизации. Попробуйте снова.")
+                    _authError.postValue("Ошибка при загрузке предложений.")
                 }
             } else {
                 _authError.postValue("Вы не авторизованы.")
             }
         }
+    }
+    private fun getCurrentLanguage(): String {
+        val prefs = appAuth.context.getSharedPreferences("app_settings", Context.MODE_PRIVATE)
+        return prefs.getString("selected_language", "en") ?: "en"
     }
 }
