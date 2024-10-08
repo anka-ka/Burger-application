@@ -30,4 +30,7 @@
     <string name="logout">Logout</string>
     <string name="auth_error">Authorization error. Try again.</string>
     <string name="not_auth">You are not authorized.</string>
+    <string name="your_basket">Your basket</string>
+    <string name="order_your_best_lunch">Order your best lunch!</string>
+    <string name="proceed_to_payment">Proceed to payment</string>
 </resources>

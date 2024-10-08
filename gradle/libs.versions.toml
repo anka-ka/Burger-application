@@ -39,7 +39,13 @@ numberpicker = "1.0.7"
 quantitypickerVersion = "1.0.1"
 retrofit = "2.11.0"
 retrofitVersion = "2.9.0"
+roomCompilerVersion = "2.7.0-alpha09"
+roomRuntime = "2.7.0-alpha09"
 scrollablenumberpicker = "0.2.2"
+roomCompiler = "2.6.1"
+roomCommon = "2.6.1"
+roomRuntimeAndroid = "2.7.0-alpha09"
+roomRuntimeJvm = "2.7.0-alpha09"
 
 [libraries]
 andanhm-quantitypicker = { module = "com.andanhm:quantitypicker", version.ref = "quantitypickerVersion" }
@@ -55,6 +61,8 @@ androidx-hilt-lifecycle-viewmodel = { module = "androidx.hilt:hilt-lifecycle-vie
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationFragmentKtx" }
+androidx-room-compiler-v270alpha09 = { module = "androidx.room:room-compiler", version.ref = "roomCompilerVersion" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
 converter-gson-v290 = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGsonVersion" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
@@ -91,6 +99,10 @@ numberpicker = { module = "com.github.travijuu:numberpicker", version.ref = "num
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit-v290 = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofitVersion" }
 scrollablenumberpicker = { module = "com.michaelmuenzer.android:ScrollableNumberPicker", version.ref = "scrollablenumberpicker" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomCompiler" }
+androidx-room-common = { group = "androidx.room", name = "room-common", version.ref = "roomCommon" }
+androidx-room-runtime-android = { group = "androidx.room", name = "room-runtime-android", version.ref = "roomRuntimeAndroid" }
+androidx-room-runtime-jvm = { group = "androidx.room", name = "room-runtime-jvm", version.ref = "roomRuntimeJvm" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

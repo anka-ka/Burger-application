@@ -3,6 +3,7 @@ package com.example.burgerapplication.ui
 import com.example.burgerapplication.adapter.ProductAdapter
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.burgerapplication.R
 import com.example.burgerapplication.auth.AppAuth
 import com.example.burgerapplication.repository.ProductRepository
+import com.example.burgerapplication.viewmodel.CartViewModel
 import com.example.burgerapplication.viewmodel.ProductViewModel
 import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +31,7 @@ class MenuFragment : Fragment(R.layout.menu_fragment) {
     lateinit var appAuth: AppAuth
 
     private val productViewModel: ProductViewModel by activityViewModels()
+    private val cartViewModel: CartViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -43,6 +46,12 @@ class MenuFragment : Fragment(R.layout.menu_fragment) {
 
         view.findViewById<MaterialButton>(R.id.settings).setOnClickListener {
             findNavController().navigate(R.id.action_menuFragment_to_settingsFragment)
+        }
+
+        view.findViewById<MaterialButton>(R.id.basket).setOnClickListener {
+            cartViewModel.sendCart()
+
+            findNavController().navigate(R.id.action_menuFragment_to_basketFragment)
         }
 
         productViewModel.loadProductsBasedOnLanguage()
@@ -72,7 +81,7 @@ class MenuFragment : Fragment(R.layout.menu_fragment) {
     private fun setupRecyclerView() {
         recyclerView.apply {
             layoutManager = GridLayoutManager(context, 2)
-            adapter = ProductAdapter { burger ->
+            adapter = ProductAdapter(cartViewModel) { burger ->
                 val bundle = Bundle().apply {
                     putInt(
                         "id",

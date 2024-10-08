@@ -11,15 +11,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.burgerapplication.R
 import com.example.burgerapplication.dto.Product
+import com.example.burgerapplication.viewmodel.CartViewModel
+import com.google.android.material.button.MaterialButton
 
 class ProductAdapter(
-    private val onBurgerClick: (Product) -> Unit
+    private val cartViewModel: CartViewModel,
+    private val onBurgerClick: (Product) -> Unit,
+
 ) : ListAdapter<Product, ProductAdapter.ProductViewHolder>(BurgerDiffCallback()) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_burger, parent, false)
-        return ProductViewHolder(view)
+        return ProductViewHolder(view, cartViewModel)
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
@@ -32,7 +36,10 @@ class ProductAdapter(
         }
     }
 
-    class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ProductViewHolder(itemView: View, private val cartViewModel: CartViewModel) : RecyclerView.ViewHolder(itemView) {
+
+        private val addToCartButton: MaterialButton = itemView.findViewById(R.id.addToCart)
+
         fun bind(product: Product) {
             itemView.findViewById<TextView>(R.id.burgerName).text = product.name
             itemView.findViewById<TextView>(R.id.shortBurgerDescription).text = product.shortDescription
@@ -42,8 +49,11 @@ class ProductAdapter(
                 .placeholder(R.drawable.baseline_settings_suggest_24)
                 .timeout(30_000)
                 .into(itemView.findViewById<ImageView>(R.id.burgerImage))
-        }
 
+            addToCartButton.setOnClickListener {
+                cartViewModel.addToCart(product)
+            }
+        }
     }
 
     class BurgerDiffCallback : DiffUtil.ItemCallback<Product>() {

@@ -2,6 +2,7 @@ package com.example.burgerapplication.api
 
 
 import com.example.burgerapplication.auth.LoginRequest
+import com.example.burgerapplication.dto.Cart
 import com.example.burgerapplication.dto.Product
 import com.example.burgerapplication.dto.Offer
 import com.example.burgerapplication.dto.Token
@@ -39,4 +40,10 @@ interface ProductApiService {
     suspend fun getOffersInRussian(
         @Header("Authorization") token: String
     ): Response<List<Offer>>
+
+    @POST("api/order")
+    suspend fun sendCart(
+        @Header("Authorization") token: String,
+        @Body productCartRequest: List<Cart>
+    ): Response<List<Cart>>
 }

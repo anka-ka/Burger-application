@@ -93,9 +93,7 @@ class ProductViewModel @Inject constructor(
         }
     }
 
-
     fun onMenuButtonClick() {
-        Log.d("ProductViewModel", "Menu button clicked in ViewModel")
         _menuButtonClickEvent.value = Unit
     }
 }

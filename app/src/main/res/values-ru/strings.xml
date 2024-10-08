@@ -32,6 +32,9 @@
     <string name="logout">Выйти</string>
     <string name="auth_error">Ошибка авторизации. Попробуйте снова.</string>
     <string name="not_auth">Вы не авторизированы.</string>
+    <string name="your_basket">Ваша корзина</string>
+    <string name="order_your_best_lunch">Закажите ваш лучший обед!</string>
+    <string name="proceed_to_payment">Перейти к оплате</string>
 
 
 </resources>
