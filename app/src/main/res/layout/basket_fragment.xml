@@ -75,13 +75,78 @@
         app:layout_constraintVertical_bias="1.0"
         tools:listitem="@layout/one_added_product" />
 
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="burgerRecyclerView" />
+
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/tools"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
+        android:layout_height="160dp"
         android:layout_gravity="bottom"
         android:background="?attr/colorPrimaryVariant"
         app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/final_price_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Final price:"
+            android:textColor="?attr/colorOnPrimary"
+            android:paddingBottom="10dp"
+            app:layout_constraintEnd_toStartOf="@id/finalPrice"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/pointsTitle" />
+
+        <TextView
+            android:id="@+id/finalPrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            tools:text="@tools:sample/lorem[1]"
+            android:textColor="?attr/colorOnPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/final_price_title"
+            app:layout_constraintTop_toTopOf="@id/final_price_title" />
+
+        <TextView
+            android:id="@+id/pointsTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Number of points:"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@id/points"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/final_price_title" />
+
+        <TextView
+            android:id="@+id/points"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="14sp"
+            tools:text="@tools:sample/lorem[1]"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/pointsTitle"
+            app:layout_constraintTop_toTopOf="@id/pointsTitle"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/payment"
@@ -92,6 +157,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

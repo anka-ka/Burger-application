@@ -1,10 +1,14 @@
 package com.example.burgerapplication.viewmodel
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.burgerapplication.auth.AppAuth
+import com.example.burgerapplication.dto.CartResponse
 import com.example.burgerapplication.dto.Product
+import com.example.burgerapplication.entity.CartEntity
 import com.example.burgerapplication.repository.CartRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -17,16 +21,23 @@ class CartViewModel @Inject constructor(
     val appAuth: AppAuth
 ) : ViewModel() {
 
+    private val _finalPrice = MutableLiveData<Double>()
+    val finalPrice: LiveData<Double> = _finalPrice
+
+    private val _points = MutableLiveData<Int>()
+    val points: LiveData<Int> = _points
+
+    private val _cartResponse = MutableLiveData<CartResponse?>()
+    val cartResponse: LiveData<CartResponse?> get() = _cartResponse
+
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> get() = _isLoading
+
     fun addToCart(product: Product) {
         viewModelScope.launch {
-            val currentQuantity = repository.getProductQuantityFromLocal(product)
+            repository.saveCartLocally(product, 1)
+            Log.d("CartViewModel", "Added to cart: ${product.name}")
 
-            if (currentQuantity > 0) {
-                repository.saveCartLocally(product, currentQuantity + 1)
-            } else {
-                repository.saveCartLocally(product, 1)
-            }
-            Log.d("CartViewModel", "Added to cart: ${product.name}, quantity: ${currentQuantity?.plus(1) ?: 1}")
         }
     }
 
@@ -34,21 +45,27 @@ class CartViewModel @Inject constructor(
         viewModelScope.launch {
             val currentQuantity = repository.getProductQuantityFromLocal(product)
             if (currentQuantity > 1) {
-                repository.saveCartLocally(product, currentQuantity - 1)
+                repository.saveCartLocally(product, -1)
             } else {
                 repository.removeFromCartLocal(product)
             }
         }
     }
 
-    fun sendCart() {
+
+    fun updateCartData() {
         viewModelScope.launch {
             val localCartItems = repository.getCartFromLocal()
             val token = appAuth.getAuthToken()
             if (token != null) {
-                repository.sendCartToServer(localCartItems, token)
+                val cartResponse = repository.sendCartToServer(localCartItems, token)
+                if (cartResponse != null) {
+                    _finalPrice.value = cartResponse.finalPrice
+                    _points.value = cartResponse.points
+                    _cartResponse.value = cartResponse
+                }
             }
-            //repository.clearLocalCart()
         }
     }
 }
+

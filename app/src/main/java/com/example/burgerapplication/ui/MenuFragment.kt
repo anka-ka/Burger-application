@@ -49,7 +49,7 @@ class MenuFragment : Fragment(R.layout.menu_fragment) {
         }
 
         view.findViewById<MaterialButton>(R.id.basket).setOnClickListener {
-            cartViewModel.sendCart()
+            cartViewModel.updateCartData()
 
             findNavController().navigate(R.id.action_menuFragment_to_basketFragment)
         }

@@ -72,6 +72,7 @@ dependencies {
     implementation ("com.google.dagger:hilt-android:2.48")
     implementation(libs.androidx.espresso.core)
     implementation (libs.androidx.room.runtime)
+    implementation(libs.play.services.analytics.impl)
     kapt (libs.androidx.room.compiler.v270alpha09)
     kapt ("com.google.dagger:hilt-compiler:2.48")
     implementation (libs.numberpicker)
