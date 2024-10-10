@@ -31,6 +31,24 @@ class CartRepository@Inject constructor(
         }
     }
 
+    suspend fun sendCartToServerInRussian(cartItems: List<CartEntity>, token: String): CartResponse? {
+        val cartData = cartItems.map { Cart(it.productId, it.quantity) }
+
+        val response = productApiService.sendCartInRussian("Bearer $token", cartData)
+        return if (response.isSuccessful) {
+            val cartResponse = response.body()
+            if (cartResponse != null) {
+                Log.d("CartRepository", "Final Price: ${cartResponse.finalPrice}")
+                Log.d("CartRepository", "Points: ${cartResponse.points}")
+                Log.d("CartRepository", "Products: ${cartResponse.products}")
+            }
+            cartResponse
+        } else {
+            Log.e("CartRepository", "Error sending cart: ${response.errorBody()?.string()}")
+            null
+        }
+    }
+
     suspend fun saveCartLocally(product: Product, quantity: Int) {
         val existingQuantity = cartDao.getQuantityByProductId(product.id) ?: 0
         val newQuantity = existingQuantity + quantity
@@ -60,4 +78,7 @@ class CartRepository@Inject constructor(
         return cartDao.getAllCartItems()
     }
 
+     suspend fun clearLocalCart() {
+        cartDao.clearCart()
+    }
 }

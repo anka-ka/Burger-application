@@ -47,4 +47,10 @@ interface ProductApiService {
         @Header("Authorization") token: String,
         @Body productCartRequest: List<Cart>
     ): Response<CartResponse>
+
+    @POST("api/basket/calculate?lang=ru")
+    suspend fun sendCartInRussian(
+        @Header("Authorization") token: String,
+        @Body productCartRequest: List<Cart>
+    ): Response<CartResponse>
 }

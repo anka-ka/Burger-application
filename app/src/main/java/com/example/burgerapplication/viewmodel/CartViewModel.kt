@@ -1,5 +1,6 @@
 package com.example.burgerapplication.viewmodel
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,7 +9,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.burgerapplication.auth.AppAuth
 import com.example.burgerapplication.dto.CartResponse
 import com.example.burgerapplication.dto.Product
-import com.example.burgerapplication.entity.CartEntity
 import com.example.burgerapplication.repository.CartRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -57,15 +57,32 @@ class CartViewModel @Inject constructor(
         viewModelScope.launch {
             val localCartItems = repository.getCartFromLocal()
             val token = appAuth.getAuthToken()
-            if (token != null) {
-                val cartResponse = repository.sendCartToServer(localCartItems, token)
-                if (cartResponse != null) {
-                    _finalPrice.value = cartResponse.finalPrice
-                    _points.value = cartResponse.points
-                    _cartResponse.value = cartResponse
+            try {
+                if (token != null) {
+                    val currentLanguage = getCurrentLanguage()
+                    val cartResponse = if (currentLanguage == "ru") {
+                        repository.sendCartToServerInRussian(localCartItems, token)
+                    }else{ repository.sendCartToServer(localCartItems, token)
+                    }
+                    if (cartResponse != null) {
+                        _finalPrice.value = cartResponse.finalPrice
+                        _points.value = cartResponse.points
+                        _cartResponse.value = cartResponse
+                    }
                 }
+            } finally { _isLoading.value= false
+
             }
         }
+    }
+
+    private fun getCurrentLanguage(): String {
+        val prefs = appAuth.context.getSharedPreferences("app_settings", Context.MODE_PRIVATE)
+        return prefs.getString("selected_language", "en") ?: "en"
+    }
+
+    suspend fun clearCart(){
+        repository.clearLocalCart()
     }
 }
 
