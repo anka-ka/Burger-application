@@ -56,6 +56,12 @@ class CartRepository@Inject constructor(
         cartDao.insert(cartEntity)
     }
 
+    suspend fun saveQuantityLocally(product: Product, quantity: Int) {
+        val cartEntity = CartEntity(productId = product.id, quantity = quantity)
+        cartDao.insert(cartEntity)
+    }
+
+
     suspend fun getCartFromLocal(): List<CartEntity> {
         return cartDao.getAllCartItems()
     }

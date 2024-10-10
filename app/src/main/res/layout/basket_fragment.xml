@@ -18,6 +18,17 @@
         android:layout_marginBottom="@dimen/common_spacing"
         app:icon="@drawable/baseline_settings_24"
         app:iconTint="?attr/colorOnPrimary"
+        app:layout_constraintEnd_toStartOf="@id/clearCart"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/clearCart"
+        style="@style/Widget.AppTheme.IconButton"
+        android:layout_width="@dimen/icon_button_size"
+        android:layout_height="@dimen/icon_button_size"
+        android:layout_marginBottom="@dimen/common_spacing"
+        app:icon="@drawable/baseline_delete_forever_24"
+        app:iconTint="?attr/colorOnPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -119,7 +130,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/tools"
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="140dp"
         android:layout_gravity="bottom"
         android:background="?attr/colorPrimaryVariant"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -128,7 +139,7 @@
             android:id="@+id/final_price_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Final price:"
+            android:text="@string/final_price"
             android:textColor="?attr/colorOnPrimary"
             android:paddingBottom="10dp"
             app:layout_constraintEnd_toStartOf="@id/finalPrice"
@@ -150,7 +161,7 @@
             android:id="@+id/pointsTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Number of points:"
+            android:text="@string/number_of_points"
             android:textColor="?attr/colorOnPrimary"
             android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@id/points"
@@ -173,21 +184,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/proceed_to_payment"
+            android:layout_marginTop="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/clearCart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Clear cart"
-            app:layout_constraintTop_toBottomOf="@id/payment"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

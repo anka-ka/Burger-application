@@ -1,6 +1,5 @@
 package com.example.burgerapplication.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -66,16 +65,7 @@ class CartAdapter(
 
 
             holder.numberPicker.setValueChangedListener { value, _ ->
-                val oldVal = holder.numberPicker.value
-                val newVal = cart.quantity
-                if (newVal < oldVal) {
-                    cartViewModel.addToCart(item)
-
-                } else {
-                    cartViewModel.removeFromCart(item)
-
-                }
-                cart.quantity = value
+                cartViewModel.updateCartQuantity(item, value)
 
             }
         }

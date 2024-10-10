@@ -14,7 +14,7 @@
     <string name="pizza" >Pizza</string>
     <string name="all_products" >All products</string>
     <string name="burger_image">burger Image</string>
-    <string name="add_to_your_basket" >Add to your basket</string>
+    <string name="add_to_your_basket" >Go to basket</string>
     <string name="save" >Save</string>
     <string name="languages" >Languages</string>
     <string name="english" >English</string>
@@ -33,4 +33,6 @@
     <string name="your_basket">Your basket</string>
     <string name="order_your_best_lunch">Order your best lunch!</string>
     <string name="proceed_to_payment">Proceed to payment</string>
+    <string name="number_of_points">Number of points:</string>
+    <string name="final_price">Final price:</string>
 </resources>

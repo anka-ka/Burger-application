@@ -82,5 +82,8 @@
     <action
         android:id="@+id/action_basketFragment_to_settingsFragment"
         app:destination="@+id/settingsFragment"/>
+    <action
+        android:id="@+id/action_oneBurgerFragment_to_basketFragment"
+        app:destination="@+id/basketFragment"/>
 
 </navigation>

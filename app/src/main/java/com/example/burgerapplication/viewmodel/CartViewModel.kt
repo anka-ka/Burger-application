@@ -46,18 +46,28 @@ class CartViewModel @Inject constructor(
         updateCartData()
     }
 
-    fun removeFromCart(product: Product) {
+    fun updateCartQuantity (product: Product, quantity : Int) {
         viewModelScope.launch {
-            val currentQuantity = repository.getProductQuantityFromLocal(product)
-            if (currentQuantity > 1) {
-                repository.saveCartLocally(product, -1)
-            } else {
-                repository.removeFromCartLocal(product)
-            }
+            repository.saveQuantityLocally(product,quantity )
             getProductQuantity(product.id)
-            updateCartData()
+
         }
+        updateCartData()
     }
+
+
+//    fun removeFromCart(product: Product) {
+//        viewModelScope.launch {
+//            val currentQuantity = repository.getProductQuantityFromLocal(product)
+//            if (currentQuantity > 1) {
+//                repository.saveCartLocally(product, -1)
+//            } else {
+//                repository.removeFromCartLocal(product)
+//            }
+//            getProductQuantity(product.id)
+//            updateCartData()
+//        }
+//    }
 
 
     fun updateCartData() {
