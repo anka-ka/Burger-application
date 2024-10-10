@@ -43,7 +43,7 @@ class BasketFragment : Fragment(R.layout.basket_fragment) {
         val token = appAuth.getAuthToken()
 
 
-        cartAdapter = CartAdapter(emptyList(), cartViewModel, cart)
+        cartAdapter = CartAdapter(emptyList(), cartViewModel, cart, viewLifecycleOwner)
         binding.burgerRecyclerView.adapter = cartAdapter
         binding.burgerRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 

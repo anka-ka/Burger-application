@@ -1,10 +1,12 @@
 package com.example.burgerapplication.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.burgerapplication.R
@@ -16,7 +18,8 @@ import com.example.burgerapplication.viewmodel.CartViewModel
 class CartAdapter(
     private var items: List<Product>,
     private val cartViewModel: CartViewModel,
-    private var cart: Cart
+    private var cart: Cart,
+    private val lifecycleOwner: LifecycleOwner,
 ) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
     class CartViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -42,7 +45,7 @@ class CartAdapter(
         val item = items[position]
         holder.burgerName.text = item.name
         holder.shortBurgerDescription.text = item.shortDescription
-        holder.price.text = item.price.toString()
+        holder.price.text = item.price
 
         Glide.with(holder.itemView.context)
             .load(item.imageUrl ?: R.drawable.baseline_error_24)
@@ -50,18 +53,31 @@ class CartAdapter(
             .timeout(30_000)
             .into(holder.burgerImage)
 
-        holder.numberPicker.value = cart.quantity
+        holder.numberPicker.min = 0
+        holder.numberPicker.max = 100
+        holder.numberPicker.unit = 1
 
-        holder.numberPicker.setValueChangedListener { value, action ->
-            val oldVal = holder.numberPicker.value
-            if (value > oldVal) {
-                cartViewModel.addToCart(item)
-            } else if (value < oldVal) {
-                cartViewModel.removeFromCart(item)
+
+        cartViewModel.getProductQuantity(item.id)
+
+        cartViewModel.productQuantities.observe(lifecycleOwner) { quantities ->
+            val quantity = quantities[item.id] ?: 0
+            holder.numberPicker.setValue(quantity)
+
+
+            holder.numberPicker.setValueChangedListener { value, _ ->
+                val oldVal = holder.numberPicker.value
+                val newVal = cart.quantity
+                if (newVal < oldVal) {
+                    cartViewModel.addToCart(item)
+
+                } else {
+                    cartViewModel.removeFromCart(item)
+
+                }
+                cart.quantity = value
+
             }
-
-            cart.quantity = value
-            cartViewModel.updateCartData()
         }
     }
 

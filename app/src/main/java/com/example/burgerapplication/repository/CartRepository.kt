@@ -63,6 +63,9 @@ class CartRepository@Inject constructor(
     suspend fun getProductQuantityFromLocal(product: Product): Int {
         return cartDao.getQuantityByProductId(product.id) ?: 0
     }
+    suspend fun getProductQuantityById(productId: Int): Int? {
+        return cartDao.getQuantityByProductId(productId)
+    }
 
     suspend fun removeFromCartLocal(product: Product) {
         val currentQuantity = cartDao.getQuantityByProductId(product.id) ?: 0

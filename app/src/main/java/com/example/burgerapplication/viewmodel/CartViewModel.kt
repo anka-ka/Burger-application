@@ -33,12 +33,17 @@ class CartViewModel @Inject constructor(
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> get() = _isLoading
 
+    private val _productQuantities = MutableLiveData<Map<Int, Int>>()
+    val productQuantities: LiveData<Map<Int, Int>> get() = _productQuantities
+
     fun addToCart(product: Product) {
         viewModelScope.launch {
             repository.saveCartLocally(product, 1)
             Log.d("CartViewModel", "Added to cart: ${product.name}")
+            getProductQuantity(product.id)
 
         }
+        updateCartData()
     }
 
     fun removeFromCart(product: Product) {
@@ -49,6 +54,8 @@ class CartViewModel @Inject constructor(
             } else {
                 repository.removeFromCartLocal(product)
             }
+            getProductQuantity(product.id)
+            updateCartData()
         }
     }
 
@@ -83,6 +90,14 @@ class CartViewModel @Inject constructor(
 
     suspend fun clearCart(){
         repository.clearLocalCart()
+    }
+
+    fun getProductQuantity(productId: Int) {
+        viewModelScope.launch {
+            val quantity = repository.getProductQuantityById(productId) ?: 0
+            val currentQuantities = _productQuantities.value ?: emptyMap()
+            _productQuantities.value = currentQuantities + (productId to quantity)
+        }
     }
 }
 
