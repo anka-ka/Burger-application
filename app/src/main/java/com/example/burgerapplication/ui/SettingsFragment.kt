@@ -29,6 +29,12 @@ class SettingsFragment: Fragment(R.layout.settings) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        productViewModel.errorEvent.observe(viewLifecycleOwner) { hasError ->
+            if (hasError) {
+                findNavController().navigate(R.id.action_settingsFragment_to_internetCheckActivity)
+            }
+        }
+
         val saveButton: Button = view.findViewById(R.id.save_settings)
         val radioGroupLanguages: RadioGroup = view.findViewById(R.id.radio_group_languages)
         val radioGroupThemes: RadioGroup = view.findViewById(R.id.radio_group_themes)

@@ -35,6 +35,18 @@ class OneProductFragment : Fragment(R.layout.one_burger_card) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        cartViewModel.errorEvent.observe(viewLifecycleOwner) { hasError ->
+            if (hasError) {
+                findNavController().navigate(R.id.action_oneBurgerFragment_to_internetCheckActivity)
+            }
+        }
+
+        productViewModel.errorEvent.observe(viewLifecycleOwner) { hasError ->
+            if (hasError) {
+                findNavController().navigate(R.id.action_oneBurgerFragment_to_internetCheckActivity)
+            }
+        }
+
         val burgerId = arguments?.getInt("id") ?: return
 
         productViewModel.loadProductById(burgerId)

@@ -46,6 +46,12 @@ class OfferFragment: Fragment(R.layout.special_offer_fragment) {
         view.findViewById<View>(R.id.back).setOnClickListener {
             findNavController().navigate(R.id.action_offerFragment_to_menuFragment)
         }
+
+        offerViewModel.errorEvent.observe(viewLifecycleOwner) { hasError ->
+            if (hasError) {
+                findNavController().navigate(R.id.action_offerFragment_to_internetCheckActivity)
+            }
+        }
     }
 
     private fun setupRecyclerView() {

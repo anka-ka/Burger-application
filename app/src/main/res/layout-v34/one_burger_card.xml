@@ -19,6 +19,28 @@
             android:background="?attr/colorPrimary"
             android:padding="16dp">
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/backToMenu"
+                style="@style/Widget.AppTheme.IconButton"
+                android:layout_width="@dimen/icon_button_size"
+                android:layout_height="@dimen/icon_button_size"
+                android:layout_marginBottom="@dimen/common_spacing"
+                app:iconTint="?attr/colorOnPrimary"
+                app:icon="@drawable/baseline_arrow_back_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/settingsOnOneProduct"
+                style="@style/Widget.AppTheme.IconButton"
+                android:layout_width="@dimen/icon_button_size"
+                android:layout_height="@dimen/icon_button_size"
+                android:layout_marginBottom="@dimen/common_spacing"
+                app:iconTint="?attr/colorOnPrimary"
+                app:icon="@drawable/baseline_settings_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <ImageView
                 android:id="@+id/burgerImage"
                 android:layout_width="0dp"
@@ -28,14 +50,15 @@
                 app:layout_constraintBottom_toTopOf="@id/burgerName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/backToMenu" />
+
 
             <TextView
                 android:id="@+id/burgerName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="@tools:sample/lorem[1]"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="26sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="@tools:sample/lorem[40]"
-                android:textColor="@color/grey"
+                android:textColor="?attr/colorPrimaryVariant"
                 android:textSize="18sp"
                 android:paddingBottom="20sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -77,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/total_price"
                 android:textSize="16sp"
-                android:textColor="@color/grey"
+                android:textColor="?attr/colorPrimaryVariant"
                 android:layout_marginEnd="70dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/longBurgerDescription" />
@@ -88,7 +111,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="70dp"
                 tools:text="@tools:sample/lorem[1]"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -96,16 +119,17 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/basketButton"
-        style="@style/Widget.AppCompat.Button"
+        style="?attr/materialIconButtonFilledStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="10dp"
+        android:text="@string/add_to_your_basket"
+        android:textColor="?attr/colorOnPrimary"
         android:gravity="center"
-        app:iconTint="@color/white"
-        android:focusedSearchResultHighlightColor="@color/grey"
+        app:iconTint="?attr/colorOnPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:icon="@drawable/baseline_shopping_basket_24" />
 

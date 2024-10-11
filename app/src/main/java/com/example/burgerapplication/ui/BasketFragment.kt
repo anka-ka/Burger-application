@@ -40,8 +40,12 @@ class BasketFragment : Fragment(R.layout.basket_fragment) {
 
         loadingIndicator = view.findViewById(R.id.progress)
         appAuth = context?.let { AppAuth(it) }!!
-        val token = appAuth.getAuthToken()
 
+        cartViewModel.errorEvent.observe(viewLifecycleOwner) { hasError ->
+            if (hasError) {
+                findNavController().navigate(R.id.action_basketFragment_to_internetCheckActivity)
+            }
+        }
 
         cartAdapter = CartAdapter(emptyList(), cartViewModel, cart, viewLifecycleOwner)
         binding.burgerRecyclerView.adapter = cartAdapter

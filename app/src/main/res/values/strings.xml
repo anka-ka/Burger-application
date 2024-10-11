@@ -35,4 +35,9 @@
     <string name="proceed_to_payment">Proceed to payment</string>
     <string name="number_of_points">Number of points:</string>
     <string name="final_price">Final price:</string>
+    <string name="oops_no_internet_connection">Oops! No internet connection!</string>
+    <string name="retry">Retry</string>
+    <string name="close_app">Close app</string>
+    <string name="still_no_internet">Still no internet</string>
+    <string name ="response_error" >Response body is empty</string>
 </resources>

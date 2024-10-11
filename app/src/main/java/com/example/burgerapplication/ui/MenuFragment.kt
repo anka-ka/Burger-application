@@ -3,7 +3,6 @@ package com.example.burgerapplication.ui
 import com.example.burgerapplication.adapter.ProductAdapter
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
@@ -35,6 +34,12 @@ class MenuFragment : Fragment(R.layout.menu_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        productViewModel.errorEvent.observe(viewLifecycleOwner) { hasError ->
+            if (hasError) {
+                findNavController().navigate(R.id.action_menuFragment_to_internetCheckActivity)
+            }
+        }
 
         recyclerView = view.findViewById(R.id.burgerRecyclerView)
         setupRecyclerView()

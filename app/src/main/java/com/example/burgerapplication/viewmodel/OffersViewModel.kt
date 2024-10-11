@@ -7,6 +7,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.burgerapplication.auth.AppAuth
 import com.example.burgerapplication.dto.Offer
+import com.example.burgerapplication.error.ApiError
+import com.example.burgerapplication.error.AppUnknownError
+import com.example.burgerapplication.error.NetworkError
 import com.example.burgerapplication.repository.OfferRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -25,10 +28,13 @@ class OfferViewModel @Inject constructor(
     private val _authError = MutableLiveData<String>()
     val authError: LiveData<String> = _authError
 
+    private val _errorEvent = MutableLiveData<Boolean>()
+    val errorEvent: LiveData<Boolean> get() = _errorEvent
+
     fun loadOffersBasedOnLanguage() {
         viewModelScope.launch {
-            if (appAuth.isAuthenticated()) {
-                try {
+            try {
+                if (appAuth.isAuthenticated()) {
                     val authToken = appAuth.getAuthToken()
                     if (authToken != null) {
                         val currentLanguage = getCurrentLanguage()
@@ -41,11 +47,17 @@ class OfferViewModel @Inject constructor(
                     } else {
                         _authError.postValue("Ошибка авторизации. Попробуйте снова.")
                     }
-                } catch (e: Exception) {
-                    _authError.postValue("Ошибка при загрузке предложений.")
+                } else {
+                    _authError.postValue("Вы не авторизованы.")
                 }
-            } else {
-                _authError.postValue("Вы не авторизованы.")
+            } catch (e: NetworkError) {
+                _errorEvent.value = true
+            } catch (e: ApiError) {
+                _errorEvent.value = true
+            } catch (e: AppUnknownError) {
+                _errorEvent.value = true
+            } catch (e: Exception) {
+                _authError.postValue("Ошибка при загрузке предложений.")
             }
         }
     }

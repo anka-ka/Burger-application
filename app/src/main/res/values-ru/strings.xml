@@ -37,6 +37,11 @@
     <string name="proceed_to_payment">Перейти к оплате</string>
     <string name="number_of_points">Количество баллов:</string>
     <string name="final_price">Окончательная цена:</string>
+    <string name="oops_no_internet_connection">Упс! Отсутствует интернет соединение!</string>
+    <string name="retry">Повторить попытку</string>
+    <string name="close_app">Закрыть приложение</string>
+    <string name="still_no_internet">Интернет соединение еще отсутствует</string>
+    <string name ="response_error" >Пустое тело ответа</string>
 
 
 </resources>

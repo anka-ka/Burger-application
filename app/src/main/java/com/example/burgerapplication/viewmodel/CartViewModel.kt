@@ -9,6 +9,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.burgerapplication.auth.AppAuth
 import com.example.burgerapplication.dto.CartResponse
 import com.example.burgerapplication.dto.Product
+import com.example.burgerapplication.error.ApiError
+import com.example.burgerapplication.error.AppUnknownError
+import com.example.burgerapplication.error.NetworkError
 import com.example.burgerapplication.repository.CartRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -36,58 +39,66 @@ class CartViewModel @Inject constructor(
     private val _productQuantities = MutableLiveData<Map<Int, Int>>()
     val productQuantities: LiveData<Map<Int, Int>> get() = _productQuantities
 
+    private val _errorEvent = MutableLiveData<Boolean>()
+    val errorEvent: LiveData<Boolean> get() = _errorEvent
+
     fun addToCart(product: Product) {
         viewModelScope.launch {
-            repository.saveCartLocally(product, 1)
-            Log.d("CartViewModel", "Added to cart: ${product.name}")
-            getProductQuantity(product.id)
-
+            try {
+                repository.saveCartLocally(product, 1)
+                Log.d("CartViewModel", "Added to cart: ${product.name}")
+                getProductQuantity(product.id)
+                updateCartData()
+            } catch (e: NetworkError) {
+                _errorEvent.value = true
+            } catch (e: ApiError) {
+                _errorEvent.value = true
+            } catch (e: AppUnknownError) {
+                _errorEvent.value = true
+            }
         }
-        updateCartData()
     }
 
-    fun updateCartQuantity (product: Product, quantity : Int) {
+    fun updateCartQuantity(product: Product, quantity: Int) {
         viewModelScope.launch {
-            repository.saveQuantityLocally(product,quantity )
-            getProductQuantity(product.id)
-
+            try {
+                repository.saveQuantityLocally(product, quantity)
+                getProductQuantity(product.id)
+                updateCartData()
+            } catch (e: NetworkError) {
+                _errorEvent.value = true
+            } catch (e: ApiError) {
+                _errorEvent.value = true
+            } catch (e: AppUnknownError) {
+                _errorEvent.value = true
+            }
         }
-        updateCartData()
     }
-
-
-//    fun removeFromCart(product: Product) {
-//        viewModelScope.launch {
-//            val currentQuantity = repository.getProductQuantityFromLocal(product)
-//            if (currentQuantity > 1) {
-//                repository.saveCartLocally(product, -1)
-//            } else {
-//                repository.removeFromCartLocal(product)
-//            }
-//            getProductQuantity(product.id)
-//            updateCartData()
-//        }
-//    }
-
 
     fun updateCartData() {
         viewModelScope.launch {
             val localCartItems = repository.getCartFromLocal()
             val token = appAuth.getAuthToken()
             try {
-                if (token != null) {
                     val currentLanguage = getCurrentLanguage()
                     val cartResponse = if (currentLanguage == "ru") {
                         repository.sendCartToServerInRussian(localCartItems, token)
-                    }else{ repository.sendCartToServer(localCartItems, token)
+                    } else {
+                        repository.sendCartToServer(localCartItems, token)
                     }
                     if (cartResponse != null) {
                         _finalPrice.value = cartResponse.finalPrice
                         _points.value = cartResponse.points
                         _cartResponse.value = cartResponse
                     }
-                }
-            } finally { _isLoading.value= false
+            } catch (e: NetworkError) {
+                _errorEvent.value = true
+            } catch (e: ApiError) {
+                _errorEvent.value = true
+            } catch (e: AppUnknownError) {
+                _errorEvent.value = true
+            } finally {
+                _isLoading.value = false
 
             }
         }
@@ -99,14 +110,30 @@ class CartViewModel @Inject constructor(
     }
 
     suspend fun clearCart(){
+        try{
         repository.clearLocalCart()
+        } catch (e: NetworkError) {
+            _errorEvent.value = true
+        } catch (e: ApiError) {
+            _errorEvent.value = true
+        } catch (e: AppUnknownError) {
+            _errorEvent.value = true
+        }
     }
 
     fun getProductQuantity(productId: Int) {
         viewModelScope.launch {
+            try{
             val quantity = repository.getProductQuantityById(productId) ?: 0
             val currentQuantities = _productQuantities.value ?: emptyMap()
             _productQuantities.value = currentQuantities + (productId to quantity)
+            } catch (e: NetworkError) {
+                _errorEvent.value = true
+            } catch (e: ApiError) {
+                _errorEvent.value = true
+            } catch (e: AppUnknownError) {
+                _errorEvent.value = true
+            }
         }
     }
 }

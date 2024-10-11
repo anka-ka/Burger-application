@@ -16,16 +16,16 @@ import retrofit2.http.Path
 
 interface ProductApiService {
     @GET("api/products?lang=en")
-    suspend fun getProducts(): List<Product>
+    suspend fun getProducts(): Response<List<Product>>
 
     @GET("api/products?lang=ru")
-    suspend fun getProductsInRussian(): List<Product>
+    suspend fun getProductsInRussian(): Response<List<Product>>
 
     @GET("api/product/{id}?lang=en")
-    suspend fun getProductById(@Path("id") id: Int): Product
+    suspend fun getProductById(@Path("id") id: Int): Response<Product>
 
     @GET("api/product/{id}?lang=ru")
-    suspend fun getProductByIdInRussian(@Path("id") id: Int): Product
+    suspend fun getProductByIdInRussian(@Path("id") id: Int): Response<Product>
 
     @POST("api/user/login")
     suspend fun authenticate(
@@ -44,13 +44,23 @@ interface ProductApiService {
 
     @POST("api/basket/calculate?lang=en")
     suspend fun sendCart(
-        @Header("Authorization") token: String,
+        @Header("Authorization") token: String?,
+        @Body productCartRequest: List<Cart>
+    ): Response<CartResponse>
+
+    @POST("api/basket/calculate?lang=en")
+    suspend fun sendCartWithoutToken(
         @Body productCartRequest: List<Cart>
     ): Response<CartResponse>
 
     @POST("api/basket/calculate?lang=ru")
     suspend fun sendCartInRussian(
-        @Header("Authorization") token: String,
+        @Header("Authorization") token: String?,
+        @Body productCartRequest: List<Cart>
+    ): Response<CartResponse>
+
+    @POST("api/basket/calculate?lang=ry")
+    suspend fun sendCartWithoutTokenInRussian(
         @Body productCartRequest: List<Cart>
     ): Response<CartResponse>
 }

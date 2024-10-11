@@ -85,5 +85,24 @@
     <action
         android:id="@+id/action_oneBurgerFragment_to_basketFragment"
         app:destination="@+id/basketFragment"/>
+    <activity
+        android:id="@+id/internetCheckActivity"
+        android:name="com.example.burgerapplication.ui.InternetCheckActivity"
+        tools:layout="@layout/internet_check" />
+    <action
+        android:id="@+id/action_menuFragment_to_internetCheckActivity"
+        app:destination="@+id/internetCheckActivity"/>
+    <action
+        android:id="@+id/action_oneBurgerFragment_to_internetCheckActivity"
+        app:destination="@+id/internetCheckActivity"/>
+    <action
+        android:id="@+id/action_settingsFragment_to_internetCheckActivity"
+        app:destination="@+id/internetCheckActivity"/>
+    <action
+        android:id="@+id/action_basketFragment_to_internetCheckActivity"
+        app:destination="@+id/internetCheckActivity"/>
+    <action
+        android:id="@+id/action_offerFragment_to_internetCheckActivity"
+        app:destination="@+id/internetCheckActivity"/>
 
 </navigation>

@@ -14,16 +14,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BurgerApplication"
         tools:targetApi="31">
+
+        <activity
+            android:name=".ui.InternetCheckActivity"
+            android:exported="true"
+            android:theme="@style/Theme.BurgerApplication">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.AppActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.BurgerApplication">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
