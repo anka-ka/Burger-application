@@ -1,7 +1,6 @@
 package com.example.burgerapplication.viewmodel
 
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,7 +19,12 @@ class LoginViewModel @Inject constructor(
     private val _isAuthenticated = MutableLiveData<Boolean>()
     val isAuthenticated: LiveData<Boolean> get() = _isAuthenticated
 
+    private var login: String? = null
+    private var password: String? = null
+
     fun login(login: String, password: String) {
+        this.login = login
+        this.password = password
         viewModelScope.launch {
             val response = userRepository.authenticate(login, password)
             if (response.isSuccessful && response.body()?.token != null) {
@@ -28,6 +32,15 @@ class LoginViewModel @Inject constructor(
                 appAuth.setAuth(response.body()!!.id, response.body()!!.token)
             } else {
                 _isAuthenticated.value = false
+            }
+        }
+    }
+
+    suspend fun loadUserData() {
+        val response = userRepository.getUserData(login ?: "", password ?: "")
+        if (response.isSuccessful) {
+            response.body()?.let { user ->
+                appAuth.setUser(user)
             }
         }
     }

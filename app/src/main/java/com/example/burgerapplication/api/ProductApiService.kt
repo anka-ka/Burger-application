@@ -7,6 +7,7 @@ import com.example.burgerapplication.dto.CartResponse
 import com.example.burgerapplication.dto.Product
 import com.example.burgerapplication.dto.Offer
 import com.example.burgerapplication.dto.Token
+import com.example.burgerapplication.dto.User
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -31,6 +32,11 @@ interface ProductApiService {
     suspend fun authenticate(
         @Body credentials: LoginRequest
     ): Response<Token>
+
+    @POST("api/user/login")
+    suspend fun getUserData(
+        @Body credentials: LoginRequest
+    ): Response<User>
 
     @GET("api/notifications?lang=en")
     suspend fun getOffers(

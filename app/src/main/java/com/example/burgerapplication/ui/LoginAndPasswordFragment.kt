@@ -8,47 +8,64 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.burgerapplication.R
 import com.example.burgerapplication.databinding.LoginAndPasswordFragmentBinding
 import com.example.burgerapplication.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class LoginAndPasswordFragment:Fragment(R.layout.login_and_password_fragment) {
+class LoginAndPasswordFragment : Fragment(R.layout.login_and_password_fragment) {
 
-    private lateinit var binding: LoginAndPasswordFragmentBinding
+    private var _binding: LoginAndPasswordFragmentBinding? = null
+    private val binding get() = _binding!!
 
     private val loginViewModel: LoginViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val binding = LoginAndPasswordFragmentBinding.inflate(inflater, container, false)
+    ): View {
+        _binding = LoginAndPasswordFragmentBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         binding.backToMenuFromLogin.setOnClickListener {
             findNavController().navigate(R.id.action_loginAndPassordFragment_to_menuFragment)
         }
 
-
         binding.signInButton.setOnClickListener {
-            val login = binding.login.text.toString()
-            val password = binding.password.text.toString()
-            loginViewModel.login(login, password)
+            val login = binding.login.text.toString().trim()
+            val password = binding.password.text.toString().trim()
+
+            if (login.isNotEmpty() && password.isNotEmpty()) {
+                loginViewModel.login(login, password)
+            } else {
+                Toast.makeText(requireContext(), R.string.need_both, Toast.LENGTH_SHORT).show()
+            }
         }
 
-        loginViewModel.isAuthenticated.observe(viewLifecycleOwner, Observer { isAuthenticated ->
+        loginViewModel.isAuthenticated.observe(viewLifecycleOwner) { isAuthenticated ->
             if (isAuthenticated) {
+                viewLifecycleOwner.lifecycleScope.launch {
+                    loginViewModel.loadUserData()
+                }
                 val intent = Intent(requireContext(), AppActivity::class.java)
                 startActivity(intent)
-                findNavController().popBackStack()
+                requireActivity().finish()
             } else {
-                Toast.makeText(requireContext(), "Authentication failed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.auth_failed, Toast.LENGTH_SHORT).show()
             }
-        })
+        }
+    }
 
-        return binding.root
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
