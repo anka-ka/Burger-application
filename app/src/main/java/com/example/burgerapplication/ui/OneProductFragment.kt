@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.burgerapplication.R
@@ -14,7 +15,16 @@ import com.example.burgerapplication.databinding.OneBurgerCardBinding
 import com.example.burgerapplication.dto.Product
 import com.example.burgerapplication.viewmodel.CartViewModel
 import com.example.burgerapplication.viewmodel.ProductViewModel
+import com.travijuu.numberpicker.library.NumberPicker
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.launch
+
 
 
 @AndroidEntryPoint
@@ -32,6 +42,7 @@ class OneProductFragment : Fragment(R.layout.one_burger_card) {
         return binding.root
     }
 
+    @OptIn(FlowPreview::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -60,8 +71,13 @@ class OneProductFragment : Fragment(R.layout.one_burger_card) {
                 binding.basketButton.setOnClickListener {
                     findNavController().navigate(R.id.action_oneBurgerFragment_to_basketFragment)
                 }
-                binding.numberPickerOnOneProduct.setValueChangedListener { value, _ ->
-                    cartViewModel.updateCartQuantity(currentProduct, value)
+                lifecycleScope.launch {
+                    binding.numberPickerOnOneProduct.valueChangeFlow()
+                        .debounce(3000)
+                        .distinctUntilChanged()
+                        .collect { value ->
+                            cartViewModel.updateCartQuantity(currentProduct, value)
+                        }
                 }
             }
         }
@@ -77,10 +93,10 @@ class OneProductFragment : Fragment(R.layout.one_burger_card) {
             binding.numberPickerOnOneProduct.setValue(quantity)
         }
 
-        binding.backToMenu?.setOnClickListener {
+        binding.backToMenu.setOnClickListener {
             findNavController().navigate(R.id.action_oneBurgerFragment_to_menuFragment)
         }
-        binding.settingsOnOneProduct?.setOnClickListener {
+        binding.settingsOnOneProduct.setOnClickListener {
             findNavController().navigate(R.id.action_oneBurgerFragment_to_settingsFragment)
         }
     }
@@ -95,5 +111,12 @@ class OneProductFragment : Fragment(R.layout.one_burger_card) {
             .placeholder(R.drawable.baseline_settings_suggest_24)
             .timeout(30_000)
             .into(binding.burgerImage)
+    }
+
+    fun NumberPicker.valueChangeFlow(): Flow<Int> = callbackFlow {
+        setValueChangedListener { value, _ ->
+            trySend(value).isSuccess
+        }
+        awaitClose { valueChangedListener = null }
     }
 }

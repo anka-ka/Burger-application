@@ -189,15 +189,5 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/side_sheet"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="end"
-        android:background="?attr/colorPrimary"
-        android:visibility="gone"
-        app:headerLayout="@layout/account_sidesheet" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

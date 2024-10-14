@@ -47,7 +47,7 @@ class BasketFragment : Fragment(R.layout.basket_fragment) {
             }
         }
 
-        cartAdapter = CartAdapter(emptyList(), cartViewModel, cart, viewLifecycleOwner)
+        cartAdapter = CartAdapter(emptyList(), cartViewModel, cart, viewLifecycleOwner, viewLifecycleOwner.lifecycleScope)
         binding.burgerRecyclerView.adapter = cartAdapter
         binding.burgerRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 

@@ -6,12 +6,22 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.burgerapplication.R
 import com.example.burgerapplication.dto.Cart
 import com.example.burgerapplication.dto.Product
 import com.example.burgerapplication.viewmodel.CartViewModel
+import com.travijuu.numberpicker.library.NumberPicker
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.launch
 
 
 class CartAdapter(
@@ -19,6 +29,7 @@ class CartAdapter(
     private val cartViewModel: CartViewModel,
     private var cart: Cart,
     private val lifecycleOwner: LifecycleOwner,
+    private val coroutineScope: CoroutineScope,
 ) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
     class CartViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -40,6 +51,7 @@ class CartAdapter(
         return CartViewHolder(view)
     }
 
+    @OptIn(FlowPreview::class)
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
         val item = items[position]
         holder.burgerName.text = item.name
@@ -62,14 +74,24 @@ class CartAdapter(
         cartViewModel.productQuantities.observe(lifecycleOwner) { quantities ->
             val quantity = quantities[item.id] ?: 0
             holder.numberPicker.setValue(quantity)
+        }
 
-
-            holder.numberPicker.setValueChangedListener { value, _ ->
-                cartViewModel.updateCartQuantity(item, value)
-
-            }
+        coroutineScope.launch {
+            holder.numberPicker.valueChangeFlow()
+                .debounce(3000)
+                .distinctUntilChanged()
+                .collect { value ->
+                    cartViewModel.updateCartQuantity(item, value)
+                }
         }
     }
 
     override fun getItemCount(): Int = items.size
+
+    fun NumberPicker.valueChangeFlow(): Flow<Int> = callbackFlow {
+        setValueChangedListener { value, _ ->
+            trySend(value).isSuccess
+        }
+        awaitClose { valueChangedListener = null }
+    }
 }

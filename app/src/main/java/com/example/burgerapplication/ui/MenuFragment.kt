@@ -2,6 +2,7 @@ package com.example.burgerapplication.ui
 
 import com.example.burgerapplication.adapter.ProductAdapter
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -19,7 +20,6 @@ import com.example.burgerapplication.viewmodel.CartViewModel
 import com.example.burgerapplication.viewmodel.LoginViewModel
 import com.example.burgerapplication.viewmodel.ProductViewModel
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.navigation.NavigationView
 import com.google.android.material.sidesheet.SideSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -120,6 +120,8 @@ class MenuFragment : Fragment(R.layout.menu_fragment) {
         val sideSheetDialog = SideSheetDialog(requireContext())
         val view = layoutInflater.inflate(R.layout.account_sidesheet, null)
         sideSheetDialog.setContentView(view)
+
+        sideSheetDialog.setSheetEdge(Gravity.START)
 
         val firstNameTextView: TextView = view.findViewById(R.id.firstName)
         val lastNameTextView: TextView = view.findViewById(R.id.lastName)
