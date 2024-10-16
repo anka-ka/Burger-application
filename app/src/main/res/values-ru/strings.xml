@@ -46,6 +46,8 @@
     <string name="number_of_your_points">Количество ваших баллов:</string>
     <string name="auth_failed">Аутентификация не удалась</string>
     <string name="need_both">Пожалуйста, введите логин и пароль</string>
+    <string name="payment_was_successful_await_your_order">Оплата прошла успешно, ожидайте ваш заказ!</string>
+    <string name="order_error">Ошибка заказа</string>
 
 
 </resources>

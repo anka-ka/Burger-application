@@ -6,6 +6,8 @@ import com.example.burgerapplication.dto.Cart
 import com.example.burgerapplication.dto.CartResponse
 import com.example.burgerapplication.dto.Product
 import com.example.burgerapplication.dto.Offer
+import com.example.burgerapplication.dto.OrderRequest
+import com.example.burgerapplication.dto.OrderResponse
 import com.example.burgerapplication.dto.Token
 import com.example.burgerapplication.dto.User
 import retrofit2.Response
@@ -69,4 +71,15 @@ interface ProductApiService {
     suspend fun sendCartWithoutTokenInRussian(
         @Body productCartRequest: List<Cart>
     ): Response<CartResponse>
+
+    @POST("api/basket/order")
+    suspend fun sendOrder(
+        @Header("Authorization") token: String?,
+        @Body orderRequest: OrderRequest
+    ): Response<OrderResponse>
+
+    @POST("api/basket/order")
+    suspend fun sendOrderWithoutToken(
+        @Body orderRequest: OrderRequest
+    ): Response<OrderResponse>
 }

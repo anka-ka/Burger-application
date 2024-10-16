@@ -104,5 +104,28 @@
     <action
         android:id="@+id/action_offerFragment_to_internetCheckActivity"
         app:destination="@+id/internetCheckActivity"/>
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="com.example.burgerapplication.ui.PaymentFragment"
+        tools:layout="@layout/payment"/>
+    <action
+        android:id="@+id/action_basketFragment_to_paymentFragment"
+        app:destination="@+id/paymentFragment"/>
+    <action
+        android:id="@+id/action_paymentFragment_to_basketFragment"
+        app:destination="@+id/basketFragment"/>
+    <action
+        android:id="@+id/action_paymentFragment_to_settingsFragment"
+        app:destination="@+id/settingsFragment"/>
+    <fragment
+        android:id="@+id/successPaymentFragment"
+        android:name="com.example.burgerapplication.ui.SuccessPaymentFragment"
+        tools:layout="@layout/success_payment"/>
+    <action
+        android:id="@+id/action_paymentFragment_to_successPaymentFragment"
+        app:destination="@+id/successPaymentFragment"/>
+    <action
+        android:id="@+id/action_successPaymentFragment_to_menuFragment"
+        app:destination="@+id/menuFragment"/>
 
 </navigation>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="12dp"
+    android:background="?attr/colorPrimary"
+    android:id="@+id/successPayment">
+
+    <TextView
+        android:id="@+id/cartTitle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/payment_was_successful_await_your_order"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"
+        android:textSize="40sp"
+        android:textColor="?attr/colorOnPrimary"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/backToMenuFromSuccess"
+        style="@style/Widget.AppTheme.IconButton"
+        android:layout_width="@dimen/icon_button_size"
+        android:layout_height="@dimen/icon_button_size"
+        android:layout_marginBottom="@dimen/common_spacing"
+        app:iconTint="?attr/colorOnPrimary"
+        app:icon="@drawable/baseline_arrow_back_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

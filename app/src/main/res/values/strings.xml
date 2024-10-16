@@ -44,4 +44,6 @@
     <string name="number_of_your_points">Number of your points:</string>
     <string name="auth_failed">Authentication failed</string>
     <string name="need_both">Please enter both login and password</string>
+    <string name="payment_was_successful_await_your_order">Payment was successful, await your order!</string>
+    <string name="order_error">Order error</string>
 </resources>

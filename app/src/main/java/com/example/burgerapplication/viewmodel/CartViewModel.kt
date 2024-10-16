@@ -7,7 +7,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.burgerapplication.auth.AppAuth
+import com.example.burgerapplication.dto.Cart
 import com.example.burgerapplication.dto.CartResponse
+import com.example.burgerapplication.dto.OrderResponse
 import com.example.burgerapplication.dto.Product
 import com.example.burgerapplication.error.ApiError
 import com.example.burgerapplication.error.AppUnknownError
@@ -41,6 +43,22 @@ class CartViewModel @Inject constructor(
 
     private val _errorEvent = MutableLiveData<Boolean>()
     val errorEvent: LiveData<Boolean> get() = _errorEvent
+
+    private val _orderResponse = MutableLiveData<OrderResponse>()
+    val orderResponse: LiveData<OrderResponse> = _orderResponse
+
+    fun sendOrder(paymentMethod: String) {
+        viewModelScope.launch {
+            try {
+                val token = appAuth.getAuthToken()
+                val response = repository.sendOrder(paymentMethod, token)
+                _orderResponse.postValue(response)
+            } catch (e: Exception) {
+                _orderResponse.postValue(OrderResponse(success = false, points = 0.0))
+            }
+        }
+    }
+
 
     fun addToCart(product: Product) {
         viewModelScope.launch {

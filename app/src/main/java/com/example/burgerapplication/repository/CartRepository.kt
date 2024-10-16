@@ -13,6 +13,8 @@ import com.example.burgerapplication.error.AppUnknownError
 import com.example.burgerapplication.error.NetworkError
 import dagger.hilt.android.qualifiers.ApplicationContext
 import android.content.Context
+import com.example.burgerapplication.dto.OrderRequest
+import com.example.burgerapplication.dto.OrderResponse
 import java.io.IOException
 import javax.inject.Inject
 
@@ -27,7 +29,7 @@ class CartRepository @Inject constructor(
 
         return try {
             val response = if (token.isNullOrBlank()) {
-                productApiService.sendCartWithoutToken( cartData)
+                productApiService.sendCartWithoutToken(cartData)
             } else {
                 productApiService.sendCart("Bearer $token", cartData)
             }
@@ -53,7 +55,10 @@ class CartRepository @Inject constructor(
         }
     }
 
-    suspend fun sendCartToServerInRussian(cartItems: List<CartEntity>, token: String?): CartResponse {
+    suspend fun sendCartToServerInRussian(
+        cartItems: List<CartEntity>,
+        token: String?
+    ): CartResponse {
         val cartData = cartItems.map { Cart(it.productId, it.quantity) }
 
         return try {
@@ -109,7 +114,36 @@ class CartRepository @Inject constructor(
         return cartDao.getQuantityByProductId(productId)
     }
 
-     suspend fun clearLocalCart() {
+    suspend fun clearLocalCart() {
         cartDao.clearCart()
+    }
+
+    suspend fun sendOrder(paymentMethod: String, token: String?): OrderResponse {
+        val cartItems = getCartFromLocal()
+        return try {
+
+            val cartRequestItems = cartItems.map { Cart(it.productId, it.quantity) }
+            val orderRequest = OrderRequest(paymentMethod, cartRequestItems)
+
+            val cartResponse = if (token.isNullOrBlank()) {
+                val response = productApiService.sendOrderWithoutToken(orderRequest)
+                if (response.isSuccessful) {
+                    response.body() ?: OrderResponse(success = false, points = 0.0)
+                } else {
+                    OrderResponse(success = false, points = 0.0)
+                }
+            } else {
+                val response = productApiService.sendOrder("Bearer $token", orderRequest)
+                if (response.isSuccessful) {
+                    response.body() ?: OrderResponse(success = false, points = 0.0)
+                } else {
+                    OrderResponse(success = false, points = 0.0)
+                }
+            }
+
+            cartResponse
+        } catch (e: Exception) {
+            OrderResponse(success = false, points = 0.0)
+        }
     }
 }

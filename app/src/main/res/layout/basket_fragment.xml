@@ -180,7 +180,7 @@
             app:layout_constraintTop_toTopOf="@id/pointsTitle"/>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/payment"
+            android:id="@+id/proceedToPayment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/proceed_to_payment"

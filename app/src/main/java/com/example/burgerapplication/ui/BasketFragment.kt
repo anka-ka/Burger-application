@@ -63,6 +63,10 @@ class BasketFragment : Fragment(R.layout.basket_fragment) {
         binding.settings.setOnClickListener {
             findNavController().navigate(R.id.action_basketFragment_to_settingsFragment)
         }
+        binding.proceedToPayment.setOnClickListener {
+            cartViewModel.updateCartData()
+            findNavController().navigate(R.id.action_basketFragment_to_paymentFragment)
+        }
         binding.refresh.setOnRefreshListener {
             cartViewModel.updateCartData()
         }
