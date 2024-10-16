@@ -88,7 +88,7 @@ class CartViewModel @Inject constructor(
                     }
                     if (cartResponse != null) {
                         _finalPrice.value = cartResponse.finalPrice
-                        _points.value = cartResponse.points
+                        _points.value = cartResponse.points.toInt()
                         _cartResponse.value = cartResponse
                     }
             } catch (e: NetworkError) {

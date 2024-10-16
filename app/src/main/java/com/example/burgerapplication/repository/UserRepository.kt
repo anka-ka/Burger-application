@@ -15,9 +15,8 @@ class UserRepository @Inject constructor (private val apiService: ProductApiServ
 
     }
 
-    suspend fun getUserData (login: String, password: String): Response<User>{
-        val credentials = LoginRequest(username = login, password = password)
-        return apiService.getUserData(credentials)
-
+    suspend fun getUserData(token: String): Response<User> {
+        return apiService.getUserData("Bearer $token")
     }
+
 }

@@ -33,9 +33,9 @@ interface ProductApiService {
         @Body credentials: LoginRequest
     ): Response<Token>
 
-    @POST("api/user/login")
+    @GET("api/user/info")
     suspend fun getUserData(
-        @Body credentials: LoginRequest
+        @Header("Authorization") token: String
     ): Response<User>
 
     @GET("api/notifications?lang=en")

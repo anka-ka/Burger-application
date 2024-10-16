@@ -34,7 +34,7 @@ class AppAuth @Inject constructor(
         val username = prefs.getString(USERNAME_KEY, null)
         val firstName = prefs.getString(FIRST_NAME_KEY, null)
         val lastName = prefs.getString(LAST_NAME_KEY, null)
-        val points = prefs.getInt(POINTS_KEY, 0)
+        val points = java.lang.Double.longBitsToDouble(prefs.getLong(POINTS_KEY, java.lang.Double.doubleToRawLongBits(0.0)))
 
         if (id != null && token != null) {
             _data.value = Token(id, token)
@@ -80,7 +80,7 @@ class AppAuth @Inject constructor(
             .putString(USERNAME_KEY, user.username)
             .putString(FIRST_NAME_KEY, user.firstName)
             .putString(LAST_NAME_KEY, user.lastName)
-            .putInt(POINTS_KEY, user.points)
+            .putLong(POINTS_KEY, java.lang.Double.doubleToRawLongBits(user.points))
             .apply()
         _user.value = user
     }

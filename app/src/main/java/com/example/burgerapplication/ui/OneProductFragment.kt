@@ -113,7 +113,7 @@ class OneProductFragment : Fragment(R.layout.one_burger_card) {
             .into(binding.burgerImage)
     }
 
-    fun NumberPicker.valueChangeFlow(): Flow<Int> = callbackFlow {
+    private fun NumberPicker.valueChangeFlow(): Flow<Int> = callbackFlow {
         setValueChangedListener { value, _ ->
             trySend(value).isSuccess
         }

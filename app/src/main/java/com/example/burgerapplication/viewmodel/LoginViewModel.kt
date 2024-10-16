@@ -19,17 +19,20 @@ class LoginViewModel @Inject constructor(
     private val _isAuthenticated = MutableLiveData<Boolean>()
     val isAuthenticated: LiveData<Boolean> get() = _isAuthenticated
 
-    private var login: String? = null
-    private var password: String? = null
+    private var token: String? = null
 
     fun login(login: String, password: String) {
-        this.login = login
-        this.password = password
         viewModelScope.launch {
             val response = userRepository.authenticate(login, password)
             if (response.isSuccessful && response.body()?.token != null) {
                 _isAuthenticated.value = true
+                token = response.body()!!.token
                 appAuth.setAuth(response.body()!!.id, response.body()!!.token)
+
+                val userResponse = userRepository.getUserData(token ?: "")
+                if (userResponse.isSuccessful && userResponse.body() != null) {
+                    appAuth.setUser(userResponse.body()!!)
+                }
             } else {
                 _isAuthenticated.value = false
             }
@@ -37,10 +40,12 @@ class LoginViewModel @Inject constructor(
     }
 
     suspend fun loadUserData() {
-        val response = userRepository.getUserData(login ?: "", password ?: "")
-        if (response.isSuccessful) {
-            response.body()?.let { user ->
-                appAuth.setUser(user)
+        token?.let {
+            val response = userRepository.getUserData(it)
+            if (response.isSuccessful) {
+                response.body()?.let { user ->
+                    appAuth.setUser(user)
+                }
             }
         }
     }
