@@ -8,13 +8,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
+
 import androidx.navigation.fragment.findNavController
 import com.example.burgerapplication.R
 import com.example.burgerapplication.databinding.LoginAndPasswordFragmentBinding
 import com.example.burgerapplication.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
+
 
 @AndroidEntryPoint
 class LoginAndPasswordFragment : Fragment(R.layout.login_and_password_fragment) {
@@ -52,9 +52,6 @@ class LoginAndPasswordFragment : Fragment(R.layout.login_and_password_fragment) 
 
         loginViewModel.isAuthenticated.observe(viewLifecycleOwner) { isAuthenticated ->
             if (isAuthenticated) {
-                viewLifecycleOwner.lifecycleScope.launch {
-                    loginViewModel.loadUserData()
-                }
                 val intent = Intent(requireContext(), AppActivity::class.java)
                 startActivity(intent)
                 requireActivity().finish()

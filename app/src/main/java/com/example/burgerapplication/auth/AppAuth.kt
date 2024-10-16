@@ -70,8 +70,8 @@ class AppAuth @Inject constructor(
     }
 
     @Synchronized
-    fun getAuthToken(): String? {
-        return _data.value?.token
+    fun getAuthToken(): String {
+        return _data.value!!.token
     }
 
     @Synchronized

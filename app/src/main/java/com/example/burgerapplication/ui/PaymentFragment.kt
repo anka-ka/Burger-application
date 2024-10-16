@@ -23,6 +23,7 @@ class PaymentFragment:Fragment(R.layout.payment) {
     private val cartViewModel: CartViewModel by activityViewModels()
 
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -61,9 +62,11 @@ class PaymentFragment:Fragment(R.layout.payment) {
                     orderResponse?.let {
                         if (it.success) {
                             findNavController().navigate(R.id.action_paymentFragment_to_successPaymentFragment)
+
                             viewLifecycleOwner.lifecycleScope.launch {
                                 cartViewModel.clearCart()
                             }
+
                         } else {
                             Toast.makeText(
                                 requireContext(),

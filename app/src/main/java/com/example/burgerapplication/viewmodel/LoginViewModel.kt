@@ -1,6 +1,7 @@
 package com.example.burgerapplication.viewmodel
 
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,7 +20,7 @@ class LoginViewModel @Inject constructor(
     private val _isAuthenticated = MutableLiveData<Boolean>()
     val isAuthenticated: LiveData<Boolean> get() = _isAuthenticated
 
-    private var token: String? = null
+    var token: String? = null
 
     fun login(login: String, password: String) {
         viewModelScope.launch {
@@ -27,12 +28,9 @@ class LoginViewModel @Inject constructor(
             if (response.isSuccessful && response.body()?.token != null) {
                 _isAuthenticated.value = true
                 token = response.body()!!.token
-                appAuth.setAuth(response.body()!!.id, response.body()!!.token)
+                appAuth.setAuth(response.body()!!.id, token!!)
 
-                val userResponse = userRepository.getUserData(token ?: "")
-                if (userResponse.isSuccessful && userResponse.body() != null) {
-                    appAuth.setUser(userResponse.body()!!)
-                }
+                loadUserData()
             } else {
                 _isAuthenticated.value = false
             }
@@ -40,13 +38,15 @@ class LoginViewModel @Inject constructor(
     }
 
     suspend fun loadUserData() {
-        token?.let {
-            val response = userRepository.getUserData(it)
-            if (response.isSuccessful) {
-                response.body()?.let { user ->
-                    appAuth.setUser(user)
-                }
-            }
+        val currentToken = appAuth.getAuthToken()
+        if (currentToken != null) {
+            val userResponse =
+                userRepository.getUserData(currentToken)
+            if (userResponse.isSuccessful && userResponse.body() != null) {
+                appAuth.setUser(userResponse.body()!!)
+            } 
+        } else {
+            Log.e("LoginViewModel", "Token is null, cannot load user data")
         }
     }
 }

@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.burgerapplication.auth.AppAuth
-import com.example.burgerapplication.dto.Cart
 import com.example.burgerapplication.dto.CartResponse
 import com.example.burgerapplication.dto.OrderResponse
 import com.example.burgerapplication.dto.Product
@@ -66,7 +65,6 @@ class CartViewModel @Inject constructor(
                 repository.saveCartLocally(product, 1)
                 Log.d("CartViewModel", "Added to cart: ${product.name}")
                 getProductQuantity(product.id)
-                updateCartData()
             } catch (e: NetworkError) {
                 _errorEvent.value = true
             } catch (e: ApiError) {
