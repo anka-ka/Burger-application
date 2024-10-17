@@ -67,7 +67,7 @@ interface ProductApiService {
         @Body productCartRequest: List<Cart>
     ): Response<CartResponse>
 
-    @POST("api/basket/calculate?lang=ry")
+    @POST("api/basket/calculate?lang=ru")
     suspend fun sendCartWithoutTokenInRussian(
         @Body productCartRequest: List<Cart>
     ): Response<CartResponse>

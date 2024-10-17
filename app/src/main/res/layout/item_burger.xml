@@ -54,14 +54,21 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />
 
-            <com.google.android.material.button.MaterialButton
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/addToCart"
-                style="@style/Widget.AppTheme.IconButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                app:icon="@drawable/baseline_add_24"
-                app:iconTint="?attr/colorOnPrimary"
-                android:background="?attr/colorPrimaryVariant"
+                style="?attr/floatingActionButtonSmallStyle"
+                app:backgroundTint="?attr/colorPrimary"
+                app:showMotionSpec="@anim/nav_default_pop_enter_anim"
+                app:elevation="6dp"
+                app:tint="?attr/colorOnPrimary"
+                app:pressedTranslationZ="2dp"
+                app:borderWidth="2dp"
+                app:strokeColor="?attr/colorOnPrimary"
+                app:rippleColor="?attr/colorPrimaryVariant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/baseline_add_24"
+                android:layout_gravity="bottom|end"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />

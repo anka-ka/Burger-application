@@ -44,7 +44,7 @@ class LoginViewModel @Inject constructor(
                 userRepository.getUserData(currentToken)
             if (userResponse.isSuccessful && userResponse.body() != null) {
                 appAuth.setUser(userResponse.body()!!)
-            } 
+            }
         } else {
             Log.e("LoginViewModel", "Token is null, cannot load user data")
         }

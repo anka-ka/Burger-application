@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.burgerapplication.R
 import com.example.burgerapplication.dto.Product
 import com.example.burgerapplication.viewmodel.CartViewModel
-import com.google.android.material.button.MaterialButton
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ProductAdapter(
     private val cartViewModel: CartViewModel,
@@ -38,7 +38,7 @@ class ProductAdapter(
 
     class ProductViewHolder(itemView: View, private val cartViewModel: CartViewModel) : RecyclerView.ViewHolder(itemView) {
 
-        private val addToCartButton: MaterialButton = itemView.findViewById(R.id.addToCart)
+        private val addToCartButton: FloatingActionButton = itemView.findViewById(R.id.addToCart)
 
         fun bind(product: Product) {
             itemView.findViewById<TextView>(R.id.burgerName).text = product.name
