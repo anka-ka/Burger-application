@@ -48,6 +48,8 @@
     <string name="need_both">Пожалуйста, введите логин и пароль</string>
     <string name="payment_was_successful_await_your_order">Оплата прошла успешно, ожидайте ваш заказ!</string>
     <string name="order_error">Ошибка заказа</string>
+    <string name="price">Цена:</string>
+    <string name="total_price_one_added_product">Общая цена:</string>
 
 
 </resources>

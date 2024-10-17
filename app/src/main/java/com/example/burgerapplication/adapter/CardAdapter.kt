@@ -1,12 +1,12 @@
 package com.example.burgerapplication.adapter
 
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.burgerapplication.R
@@ -22,6 +22,8 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
+import java.math.BigDecimal
+import java.math.RoundingMode
 
 
 class CartAdapter(
@@ -37,6 +39,7 @@ class CartAdapter(
         val burgerName: TextView = itemView.findViewById(R.id.burgerName)
         val price:TextView = itemView.findViewById(R.id.price)
         val shortBurgerDescription: TextView = itemView.findViewById(R.id.shortBurgerDescription)
+        val totalPrice: TextView = itemView.findViewById(R.id.totalPrice)
         val numberPicker: com.travijuu.numberpicker.library.NumberPicker = itemView.findViewById(R.id.numberPicker)
     }
 
@@ -74,6 +77,9 @@ class CartAdapter(
         cartViewModel.productQuantities.observe(lifecycleOwner) { quantities ->
             val quantity = quantities[item.id] ?: 0
             holder.numberPicker.setValue(quantity)
+
+            val total = calculateTotalPrice(item.price, quantity)
+            holder.totalPrice.text = total.toString()
         }
 
         coroutineScope.launch {
@@ -82,6 +88,10 @@ class CartAdapter(
                 .distinctUntilChanged()
                 .collect { value ->
                     cartViewModel.updateCartQuantity(item, value)
+
+                    val total = calculateTotalPrice(item.price, value)
+                    holder.totalPrice.text = total.toString()
+
                 }
         }
     }
@@ -93,5 +103,9 @@ class CartAdapter(
             trySend(value).isSuccess
         }
         awaitClose { valueChangedListener = null }
+    }
+     fun calculateTotalPrice(price: String, quantity: Int): Double {
+        val total = price.toDouble() * quantity
+        return BigDecimal(total).setScale(2, RoundingMode.HALF_UP).toDouble()
     }
 }

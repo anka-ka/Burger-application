@@ -73,11 +73,13 @@ dependencies {
     implementation(libs.androidx.espresso.core)
     implementation (libs.androidx.room.runtime)
     implementation(libs.play.services.analytics.impl)
+    testImplementation(libs.junit.jupiter)
+
     kapt (libs.androidx.room.compiler.v270alpha09)
     kapt ("com.google.dagger:hilt-compiler:2.48")
     implementation (libs.numberpicker)
     implementation ("com.github.bumptech.glide:glide:4.14.2")
-    annotationProcessor ("com.github.bumptech.glide:compiler:4.14.2")
+    kapt ("com.github.bumptech.glide:compiler:4.16.0")
 
 
 
@@ -95,7 +97,8 @@ dependencies {
     implementation (libs.androidx.gridlayout)
     implementation (libs.gson)
     implementation (libs.androidx.lifecycle.viewmodel.ktx)
-    testImplementation(libs.junit)
+    testImplementation (libs.kotlinx.coroutines.test)
+    testImplementation (libs.mockito.core)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))

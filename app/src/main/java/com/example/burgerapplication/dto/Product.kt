@@ -8,5 +8,6 @@ data class Product(
     val longDescription: String,
     val type:String,
     val price: String,
+    val totalPrice: Double,
     val imageUrl: String?
 )

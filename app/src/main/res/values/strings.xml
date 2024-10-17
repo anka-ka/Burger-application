@@ -46,4 +46,6 @@
     <string name="need_both">Please enter both login and password</string>
     <string name="payment_was_successful_await_your_order">Payment was successful, await your order!</string>
     <string name="order_error">Order error</string>
+    <string name="price">Price:</string>
+    <string name="total_price_one_added_product">Total price:</string>
 </resources>
