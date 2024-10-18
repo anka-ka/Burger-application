@@ -34,7 +34,7 @@
         android:id="@+id/cartTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Your cart"
+        android:text="@string/your_cart"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -48,7 +48,7 @@
             android:id="@+id/totalPriceTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total price: "
+            android:text="@string/total_price_in_payment"
             android:textSize="18sp"
             android:textColor="?attr/colorOnPrimary"
             app:layout_constraintTop_toBottomOf="@+id/cartTitle"
@@ -68,7 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="?attr/colorOnPrimary"
-        android:text="Select payment method:"
+        android:text="@string/select_payment_method"
         android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@id/totalPriceTitle"
         app:layout_constraintStart_toStartOf="parent"
@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             android:checked="true"
             android:enabled="true"
-            android:text="Cash"
+            android:text="@string/cash"
             android:textColor="?attr/colorOnPrimary" />
 
         <RadioButton
@@ -101,7 +101,7 @@
             android:checked="true"
             android:enabled="true"
             android:textColor="?attr/colorOnPrimary"
-            android:text="Bonus points" />
+            android:text="@string/bonus_points" />
 
     </RadioGroup>
 
@@ -112,7 +112,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="10dp"
-        android:text="Accept payment"
+        android:text="@string/accept_payment"
         android:textSize="20sp"
         android:textColor="?attr/colorOnPrimary"
         android:gravity="center"

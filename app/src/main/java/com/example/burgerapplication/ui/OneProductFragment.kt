@@ -19,6 +19,7 @@ import com.travijuu.numberpicker.library.NumberPicker
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.debounce
@@ -46,17 +47,16 @@ class OneProductFragment : Fragment(R.layout.one_burger_card) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val shimmerContainer = binding.shimmerViewContainer
+        shimmerContainer.startShimmer()
+
+
         cartViewModel.errorEvent.observe(viewLifecycleOwner) { hasError ->
             if (hasError) {
                 findNavController().navigate(R.id.action_oneBurgerFragment_to_internetCheckActivity)
             }
         }
 
-        productViewModel.errorEvent.observe(viewLifecycleOwner) { hasError ->
-            if (hasError) {
-                findNavController().navigate(R.id.action_oneBurgerFragment_to_internetCheckActivity)
-            }
-        }
 
         val burgerId = arguments?.getInt("id") ?: return
 
@@ -67,6 +67,13 @@ class OneProductFragment : Fragment(R.layout.one_burger_card) {
                 bindBurger(it)
 
                 val currentProduct = it
+
+                lifecycleScope.launch {
+                    delay(2000)
+                    shimmerContainer.stopShimmer()
+                    shimmerContainer.hideShimmer()
+                }
+
 
                 binding.basketButton.setOnClickListener {
                     findNavController().navigate(R.id.action_oneBurgerFragment_to_basketFragment)
@@ -99,7 +106,11 @@ class OneProductFragment : Fragment(R.layout.one_burger_card) {
         binding.settingsOnOneProduct.setOnClickListener {
             findNavController().navigate(R.id.action_oneBurgerFragment_to_settingsFragment)
         }
-    }
+
+
+
+//        binding.content.visibility = View.VISIBLE
+ }
 
     private fun bindBurger(product: Product) {
 

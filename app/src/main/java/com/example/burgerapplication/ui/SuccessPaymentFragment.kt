@@ -39,10 +39,10 @@ class SuccessPaymentFragment:Fragment(R.layout.success_payment) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.backToMenuFromSuccess.setOnClickListener {
-            if (appAuth.getAuthToken() != null) {
+
                 viewLifecycleOwner.lifecycleScope.launch {
                     loginViewModel.loadUserData()
-                }
+
 
                 findNavController().navigate(R.id.action_successPaymentFragment_to_menuFragment)
             }

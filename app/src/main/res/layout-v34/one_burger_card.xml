@@ -14,6 +14,7 @@
         android:layout_above="@id/basketButton">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/buttons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
@@ -41,81 +42,99 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/burgerImage"
-                android:layout_width="0dp"
-                android:layout_height="400dp"
-                android:contentDescription="@string/burger_image"
-                tools:src="@tools:sample/avatars[2]"
-                app:layout_constraintBottom_toTopOf="@id/burgerName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/backToMenu" />
-
-
-            <TextView
-                android:id="@+id/burgerName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="@tools:sample/lorem[1]"
-                android:textColor="?attr/colorOnPrimary"
-                android:textSize="26sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/burgerImage" />
-
-            <TextView
-                android:id="@+id/longBurgerDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="@tools:sample/lorem[40]"
-                android:textColor="?attr/colorPrimaryVariant"
-                android:textSize="18sp"
-                android:paddingBottom="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/burgerName" />
-
-            <LinearLayout
-                android:id="@+id/number_picker"
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_view_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/longBurgerDescription">
+                app:shimmer_base_color="?attr/colorPrimaryVariant"
+                app:shimmer_highlight_color="?attr/colorPrimary"
+                android:layout_margin="16dp"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@id/settingsOnOneProduct"
+                app:layout_constraintBottom_toBottomOf="parent">
 
-                <com.travijuu.numberpicker.library.NumberPicker
-                    android:id="@+id/numberPickerOnOneProduct"
-                    android:layout_width="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    numberpicker:focusable="true"
-                    numberpicker:max="10"
-                    numberpicker:min="0"
-                    numberpicker:unit="1"
-                    numberpicker:value="0"/>
-            </LinearLayout>
+                    android:id="@+id/content">
 
-            <TextView
-                android:id="@+id/totalPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/total_price"
-                android:textSize="16sp"
-                android:textColor="?attr/colorPrimaryVariant"
-                android:layout_marginEnd="70dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/longBurgerDescription" />
+                    <ImageView
+                        android:id="@+id/burgerImage"
+                        android:layout_width="0dp"
+                        android:layout_height="400dp"
+                        android:contentDescription="@string/burger_image"
+                        tools:src="@tools:sample/avatars[2]"
+                        app:layout_constraintBottom_toTopOf="@id/burgerName"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        />
 
-            <TextView
-                android:id="@+id/burgerPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="70dp"
-                tools:text="@tools:sample/lorem[1]"
-                android:textColor="?attr/colorOnPrimary"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/totalPrice" />
+
+                    <TextView
+                        android:id="@+id/burgerName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="@tools:sample/lorem[1]"
+                        android:textColor="?attr/colorOnPrimary"
+                        android:textSize="26sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/burgerImage" />
+
+                    <TextView
+                        android:id="@+id/longBurgerDescription"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="@tools:sample/lorem[40]"
+                        android:textColor="?attr/colorPrimaryVariant"
+                        android:textSize="18sp"
+                        android:paddingBottom="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/burgerName" />
+
+                    <LinearLayout
+                        android:id="@+id/number_picker"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/longBurgerDescription">
+
+                        <com.travijuu.numberpicker.library.NumberPicker
+                            android:id="@+id/numberPickerOnOneProduct"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            numberpicker:focusable="true"
+                            numberpicker:max="10"
+                            numberpicker:min="0"
+                            numberpicker:unit="1"
+                            numberpicker:value="0" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/totalPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/price"
+                        android:textSize="16sp"
+                        android:textColor="?attr/colorPrimaryVariant"
+                        android:layout_marginEnd="70dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/longBurgerDescription" />
+
+                    <TextView
+                        android:id="@+id/burgerPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="70dp"
+                        tools:text="@tools:sample/lorem[1]"
+                        android:textColor="?attr/colorOnPrimary"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/totalPrice" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.facebook.shimmer.ShimmerFrameLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

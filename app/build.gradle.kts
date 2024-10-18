@@ -68,6 +68,7 @@ dependencies {
     implementation(libs.kotlinx.coroutines.core.v160)
     implementation(libs.kotlinx.coroutines.android.v160)
     implementation("com.github.bumptech.glide:glide:5.0.0-rc01")
+    implementation ("com.facebook.shimmer:shimmer:0.5.0")
 
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)

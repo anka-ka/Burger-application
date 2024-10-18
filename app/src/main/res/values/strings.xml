@@ -45,7 +45,13 @@
     <string name="auth_failed">Authentication failed</string>
     <string name="need_both">Please enter both login and password</string>
     <string name="payment_was_successful_await_your_order">Payment was successful, await your order!</string>
-    <string name="order_error">Order error</string>
+    <string name="order_error">Log in to pay for your order with points</string>
     <string name="price">Price:</string>
     <string name="total_price_one_added_product">Total price:</string>
+    <string name="your_cart">Your cart</string>
+    <string name="total_price_in_payment">Total price:</string>
+    <string name="select_payment_method">Select payment method:</string>
+    <string name="cash">Cash</string>
+    <string name="bonus_points">Bonus points</string>
+    <string name="accept_payment">Accept payment</string>
 </resources>
