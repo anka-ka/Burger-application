@@ -56,32 +56,32 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    tasks.withType<Test> {
+        useJUnitPlatform()
+    }
 
 }
 
 dependencies {
-
-    implementation (libs.retrofit.v290)
-    implementation (libs.converter.gson.v290)
-    implementation (libs.kotlinx.coroutines.core.v160)
-    implementation (libs.kotlinx.coroutines.android.v160)
-    implementation ("com.github.bumptech.glide:glide:5.0.0-rc01")
+    implementation(libs.retrofit.v290)
+    implementation(libs.converter.gson.v290)
+    implementation(libs.kotlinx.coroutines.core.v160)
+    implementation(libs.kotlinx.coroutines.android.v160)
+    implementation("com.github.bumptech.glide:glide:5.0.0-rc01")
 
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
-    implementation ("com.google.dagger:hilt-android:2.48")
+    implementation("com.google.dagger:hilt-android:2.48")
     implementation(libs.androidx.espresso.core)
-    implementation (libs.androidx.room.runtime)
+    implementation(libs.androidx.room.runtime)
     implementation(libs.play.services.analytics.impl)
     testImplementation(libs.junit.jupiter)
 
-    kapt (libs.androidx.room.compiler.v270alpha09)
-    kapt ("com.google.dagger:hilt-compiler:2.48")
-    implementation (libs.numberpicker)
-    implementation ("com.github.bumptech.glide:glide:4.14.2")
-    kapt ("com.github.bumptech.glide:compiler:4.16.0")
-
-
+    kapt(libs.androidx.room.compiler.v270alpha09)
+    kapt("com.google.dagger:hilt-compiler:2.48")
+    implementation(libs.numberpicker)
+    implementation("com.github.bumptech.glide:glide:4.14.2")
+    kapt("com.github.bumptech.glide:compiler:4.16.0")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -91,14 +91,16 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation (libs.androidx.constraintlayout)
-    implementation (libs.material)
-    implementation (libs.androidx.appcompat)
-    implementation (libs.androidx.gridlayout)
-    implementation (libs.gson)
-    implementation (libs.androidx.lifecycle.viewmodel.ktx)
-    testImplementation (libs.kotlinx.coroutines.test)
-    testImplementation (libs.mockito.core)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.material)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.gridlayout)
+    implementation(libs.gson)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation ("io.mockk:mockk:1.12.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
