@@ -150,18 +150,7 @@
         android:layout_gravity="bottom"
         android:background="?attr/colorPrimaryVariant"
         app:layout_constraintBottom_toBottomOf="parent">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/map"
-            style="@style/Widget.Material3.Button.IconButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:icon="@drawable/map"
-            app:iconTint="?attr/colorOnPrimary"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginStart="16dp" />
+        
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/basket"
