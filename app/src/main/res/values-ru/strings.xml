@@ -31,7 +31,7 @@
     <string name="sign_up">Зарегистрироваться</string>
     <string name="logout">Выйти</string>
     <string name="auth_error">Ошибка авторизации. Попробуйте снова.</string>
-    <string name="not_auth">Вы не авторизированы.</string>
+    <string name="not_auth">Вы не авторизованы.</string>
     <string name="your_basket">Ваша корзина</string>
     <string name="order_your_best_lunch">Закажите ваш лучший обед!</string>
     <string name="proceed_to_payment">Перейти к оплате</string>
@@ -47,7 +47,7 @@
     <string name="auth_failed">Аутентификация не удалась</string>
     <string name="need_both">Пожалуйста, введите логин и пароль</string>
     <string name="payment_was_successful_await_your_order">Оплата прошла успешно, ожидайте ваш заказ!</string>
-    <string name="order_error">Aвторизируйтесь для оплаты вашего заказа баллами </string>
+    <string name="order_error">Aвторизуйтесь для оплаты вашего заказа баллами </string>
     <string name="price">Цена:</string>
     <string name="total_price_one_added_product">Общая цена:</string>
     <string name="your_cart">Your cart</string>
@@ -56,6 +56,8 @@
     <string name="cash">Наличные</string>
     <string name="bonus_points">Бонусные баллы</string>
     <string name="accept_payment">Подтвердить оплату</string>
+    <string name="empty_cart">Ваша корзина пуста</string>
+    <string name="offers_error">Ошибка при загрузке предложений</string>
 
 
 </resources>

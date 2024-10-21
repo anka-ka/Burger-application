@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.burgerapplication.R
 import com.example.burgerapplication.auth.AppAuth
 import com.example.burgerapplication.dto.Offer
 import com.example.burgerapplication.error.ApiError
@@ -45,10 +46,10 @@ class OfferViewModel @Inject constructor(
                         }
                         _offers.postValue(offerList)
                     } else {
-                        _authError.postValue("Ошибка авторизации. Попробуйте снова.")
+                        _authError.postValue(R.string.auth_error.toString())
                     }
                 } else {
-                    _authError.postValue("Вы не авторизованы.")
+                    _authError.postValue(R.string.not_auth.toString())
                 }
             } catch (e: NetworkError) {
                 _errorEvent.value = true
@@ -57,7 +58,7 @@ class OfferViewModel @Inject constructor(
             } catch (e: AppUnknownError) {
                 _errorEvent.value = true
             } catch (e: Exception) {
-                _authError.postValue("Ошибка при загрузке предложений.")
+                _authError.postValue(R.string.offers_error.toString())
             }
         }
     }

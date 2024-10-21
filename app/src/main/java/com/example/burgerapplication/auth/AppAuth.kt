@@ -21,6 +21,7 @@ class AppAuth @Inject constructor(
     private val FIRST_NAME_KEY = "FIRST_NAME_KEY"
     private val LAST_NAME_KEY = "LAST_NAME_KEY"
     private val POINTS_KEY = "POINTS_KEY"
+    private val LAST_AUTH_TIME_KEY = "LAST_AUTH_TIME_KEY"
 
     private val prefs = context.getSharedPreferences("auth", Context.MODE_PRIVATE)
     private val _data = MutableStateFlow<Token?>(null)
@@ -29,6 +30,7 @@ class AppAuth @Inject constructor(
     val data: StateFlow<Token?> = _data.asStateFlow()
 
     init {
+        checkAuthValidity()
         val id = prefs.getString(ID_KEY, null)
         val token = prefs.getString(TOKEN_KEY, null)
         val username = prefs.getString(USERNAME_KEY, null)
@@ -48,9 +50,11 @@ class AppAuth @Inject constructor(
 
     @Synchronized
     fun setAuth(id: String, token: String) {
+        val currentTime = System.currentTimeMillis()
         prefs.edit()
             .putString(ID_KEY, id)
             .putString(TOKEN_KEY, token)
+            .putLong(LAST_AUTH_TIME_KEY, currentTime)
             .apply()
         _data.value = Token(id, token)
     }
@@ -83,5 +87,18 @@ class AppAuth @Inject constructor(
             .putLong(POINTS_KEY, java.lang.Double.doubleToRawLongBits(user.points))
             .apply()
         _user.value = user
+    }
+
+    private fun isTokenExpired(): Boolean {
+        val lastAuthTime = prefs.getLong(LAST_AUTH_TIME_KEY, 0L)
+        val currentTime = System.currentTimeMillis()
+        val expirationTime = 24 * 60 * 60 * 1000
+        return (currentTime - lastAuthTime) > expirationTime
+    }
+
+    private fun checkAuthValidity() {
+        if (isTokenExpired()) {
+            clearAuth()
+        }
     }
 }

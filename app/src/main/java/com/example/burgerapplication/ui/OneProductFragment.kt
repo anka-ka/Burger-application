@@ -107,9 +107,6 @@ class OneProductFragment : Fragment(R.layout.one_burger_card) {
             findNavController().navigate(R.id.action_oneBurgerFragment_to_settingsFragment)
         }
 
-
-
-//        binding.content.visibility = View.VISIBLE
  }
 
     private fun bindBurger(product: Product) {

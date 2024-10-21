@@ -12,7 +12,6 @@ import com.example.burgerapplication.R
 import com.example.burgerapplication.auth.AppAuth
 import com.example.burgerapplication.databinding.SuccessPaymentBinding
 import com.example.burgerapplication.viewmodel.LoginViewModel
-
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject

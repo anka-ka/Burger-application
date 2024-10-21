@@ -95,6 +95,11 @@ class ProductViewModel @Inject constructor(
         sharedPreferences.edit().putString("selected_theme", theme).apply()
     }
 
+    fun getSavedTheme(): String {
+        val sharedPreferences = context.getSharedPreferences("app_settings", Context.MODE_PRIVATE)
+        return sharedPreferences.getString("selected_theme", "light") ?: "light"
+    }
+
 
     fun updateTheme(theme: String) {
         repository.updateTheme(theme)

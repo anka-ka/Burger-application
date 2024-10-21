@@ -63,7 +63,6 @@ class CartViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 repository.saveCartLocally(product, 1)
-                Log.d("CartViewModel", "Added to cart: ${product.name}")
                 getProductQuantity(product.id)
             } catch (e: NetworkError) {
                 _errorEvent.value = true

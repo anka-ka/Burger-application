@@ -54,4 +54,6 @@
     <string name="cash">Cash</string>
     <string name="bonus_points">Bonus points</string>
     <string name="accept_payment">Accept payment</string>
+    <string name="empty_cart">Your cart is empty</string>
+    <string name="offers_error">Error loading offers</string>
 </resources>

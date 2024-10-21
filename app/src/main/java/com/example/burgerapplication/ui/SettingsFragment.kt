@@ -43,6 +43,8 @@ class SettingsFragment: Fragment(R.layout.settings) {
             findNavController().navigate(R.id.action_settingsFragment_to_menuFragment)
         }
 
+        setInitialSettings(radioGroupLanguages, radioGroupThemes)
+
         saveButton.setOnClickListener {
             val selectedLanguage = when (radioGroupLanguages.checkedRadioButtonId) {
                 R.id.radio_russian -> "ru"
@@ -67,6 +69,22 @@ class SettingsFragment: Fragment(R.layout.settings) {
 
             updateLocale(selectedLanguage)
             productViewModel.updateTheme(selectedTheme)
+        }
+    }
+
+    private fun setInitialSettings(radioGroupLanguages: RadioGroup, radioGroupThemes: RadioGroup) {
+
+        val savedLanguage = productViewModel.getSavedLanguage()
+        val savedTheme = productViewModel.getSavedTheme()
+
+        when (savedLanguage) {
+            "ru" -> radioGroupLanguages.check(R.id.radio_russian)
+            "en" -> radioGroupLanguages.check(R.id.radio_english)
+        }
+
+        when (savedTheme) {
+            "dark" -> radioGroupThemes.check(R.id.radio_dark)
+            "light" -> radioGroupThemes.check(R.id.radio_light)
         }
     }
 

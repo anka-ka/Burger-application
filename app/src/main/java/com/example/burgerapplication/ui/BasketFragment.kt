@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -64,8 +65,14 @@ class BasketFragment : Fragment(R.layout.basket_fragment) {
             findNavController().navigate(R.id.action_basketFragment_to_settingsFragment)
         }
         binding.proceedToPayment.setOnClickListener {
-            cartViewModel.updateCartData()
-            findNavController().navigate(R.id.action_basketFragment_to_paymentFragment)
+            cartViewModel.cartResponse.value?.let { cartResponse ->
+                if (cartResponse.products.isNotEmpty()) {
+                    cartViewModel.updateCartData()
+                    findNavController().navigate(R.id.action_basketFragment_to_paymentFragment)
+                } else {
+                    Toast.makeText(requireContext(), R.string.empty_cart, Toast.LENGTH_LONG).show()
+                }
+            }
         }
         binding.refresh.setOnRefreshListener {
             cartViewModel.updateCartData()
@@ -85,9 +92,6 @@ class BasketFragment : Fragment(R.layout.basket_fragment) {
                 cartAdapter.updateCart(cartResponse.products)
                 binding.points.text = cartResponse.points.toString()
                 binding.finalPrice.text = cartResponse.finalPrice.toString()
-                Log.d("BasketFragment", "Продукты: ${cartResponse.products}")
-            } ?: run {
-                Log.e("BasketFragment", "Ошибка загрузки корзины")
             }
         }
     }
