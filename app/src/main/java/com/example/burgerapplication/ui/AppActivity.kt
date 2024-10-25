@@ -2,7 +2,6 @@ package com.example.burgerapplication.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -12,14 +11,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.view.MenuProvider
-import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.example.burgerapplication.R
 import com.example.burgerapplication.auth.AppAuth
-import com.example.burgerapplication.repository.ProductRepository
 import com.example.burgerapplication.viewmodel.AuthViewModel
 import com.example.burgerapplication.viewmodel.ProductViewModel
-import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Locale
 import javax.inject.Inject
@@ -87,10 +83,6 @@ class AppActivity : AppCompatActivity(R.layout.app_actvity) {
             R.id.sign_in -> {
                 findNavController(R.id.nav_host_fragment)
                     .navigate(R.id.action_appActivity_to_loginAndPasswordFragment)
-                appAuth.setAuth("9505b0f9-544a-4a1c-9383-f545730013ab", "token")
-                true
-            }
-            R.id.sign_up -> {
                 true
             }
             R.id.logout -> {

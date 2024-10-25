@@ -6,9 +6,6 @@
         <item
             android:id="@+id/sign_in"
             android:title="@string/sign_in" />
-        <item
-            android:id="@+id/sign_up"
-            android:title="@string/sign_up" />
 
     </group>
     <group android:id="@+id/unauthenticated"
