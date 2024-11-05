@@ -14,6 +14,7 @@ import com.example.burgerapplication.error.NetworkError
 import com.example.burgerapplication.repository.ProductRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
@@ -35,10 +36,15 @@ class ProductViewModel @Inject constructor(
 
     fun loadProducts() {
         viewModelScope.launch {
-            val productList = repository.getProducts()
-            _products.value = productList
+            try {
+                val productList = repository.getProducts()
+                _products.value = productList
+            } catch (e: Exception) {
+                _errorEvent.value = true
+            }
         }
     }
+
 
     fun loadProductById(id: Int) {
         viewModelScope.launch {

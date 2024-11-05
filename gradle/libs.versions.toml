@@ -35,6 +35,7 @@ lifecycleRuntimeKtx = "2.8.5"
 activityCompose = "1.9.2"
 composeBom = "2024.04.01"
 material = "1.12.0"
+materialVersion = "1.8.0"
 meternumberpicker = "1.0.5"
 mockitoCore = "4.0.0"
 navigationFragmentKtx = "2.8.1"
@@ -101,6 +102,7 @@ kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-c
 kotlinx-coroutines-core-v160 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCoreVersion" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
+material-v180 = { module = "com.google.android.material:material", version.ref = "materialVersion" }
 meternumberpicker = { module = "com.alex-zaitsev:meternumberpicker", version.ref = "meternumberpicker" }
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
 numberpicker = { module = "com.github.travijuu:numberpicker", version.ref = "numberpicker" }

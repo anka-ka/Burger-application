@@ -35,8 +35,8 @@
     <string name="your_basket">Ваша корзина</string>
     <string name="order_your_best_lunch">Закажите ваш лучший обед!</string>
     <string name="proceed_to_payment">Перейти к оплате</string>
-    <string name="number_of_points">Количество баллов:</string>
-    <string name="final_price">Окончательная цена:</string>
+    <string name="number_of_points">БАЛЛЫ:</string>
+    <string name="final_price">ОКОНЧАТЕЛЬНАЯ ЦЕНА:</string>
     <string name="oops_no_internet_connection">Упс! Отсутствует интернет соединение!</string>
     <string name="retry">Повторить попытку</string>
     <string name="close_app">Закрыть приложение</string>

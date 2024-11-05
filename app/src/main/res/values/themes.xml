@@ -12,7 +12,7 @@
 
         <item name="colorSecondary">@color/grey
         </item>
-        <item name="colorSecondaryVariant">@color/grey
+        <item name="colorSecondaryVariant">@color/tools_color
         </item>
         <item name="colorOnSecondary">@color/black
         </item>

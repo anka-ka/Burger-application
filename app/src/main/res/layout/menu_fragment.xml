@@ -137,7 +137,7 @@
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:layout_gravity="bottom"
-        android:background="?attr/colorPrimaryVariant"
+        android:background="?attr/colorSecondaryVariant"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <com.google.android.material.button.MaterialButton
