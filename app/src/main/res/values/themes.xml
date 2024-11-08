@@ -10,12 +10,13 @@
         </item>
 
 
-        <item name="colorSecondary">@color/grey
+        <item name="colorSecondary">@color/shadow
         </item>
         <item name="colorSecondaryVariant">@color/tools_color
         </item>
         <item name="colorOnSecondary">@color/black
         </item>
+
 
 
         <item name="android:statusBarColor" >?attr/colorPrimaryVariant

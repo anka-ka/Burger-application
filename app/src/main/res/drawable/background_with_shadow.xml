@@ -1,0 +1,9 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+
+        android:drawable="@drawable/shadow_shape"/>
+
+
+    <item android:drawable="@drawable/rounded_bottom_corners" />
+
+</layer-list>

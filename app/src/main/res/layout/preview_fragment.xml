@@ -7,18 +7,23 @@
     android:background="?attr/colorPrimary">
 
 
-
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="610dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/background_with_shadow"
+        app:layout_constraintTop_toTopOf="parent">
     <TextView
         android:id="@+id/welcome"
         android:layout_width="228dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:paddingTop="20dp"
+        android:paddingTop="100dp"
         android:text="@string/are_you_hungry"
         android:textSize="44sp"
         android:textStyle="bold"
         android:textColor="?attr/colorOnPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -41,19 +46,28 @@
 
 
     </TextView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/goButton"
-        style="@style/Widget.AppTheme.IconButton"
-        android:text="@string/go"
-        android:textColor="?attr/colorOnPrimary"
-        android:layout_width="wrap_content"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:text="@string/go"
+        android:textColor="?attr/colorOnSecondary"
+        android:textStyle="bold"
+        app:icon="@drawable/baseline_arrow_forward_24"
+        app:iconGravity="end"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        app:iconTint="?attr/colorOnPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        />
-
+        app:strokeColor="?attr/colorOnPrimary"
+        app:cornerRadius="10dp"
+        app:strokeWidth="1dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
