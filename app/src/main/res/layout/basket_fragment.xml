@@ -200,11 +200,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pointsTitle"
-            app:strokeColor="?attr/colorOnPrimary"
             android:textColor="?attr/colorOnSecondary"
-            android:textStyle="bold"
-            app:strokeWidth="1dp"
-            android:letterSpacing="0.4"/>
+            app:cornerRadius="10dp"
+            app:strokeColor="?attr/colorOnPrimary"
+            app:strokeWidth="2dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
