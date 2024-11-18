@@ -58,6 +58,7 @@
     <string name="accept_payment">Подтвердить оплату</string>
     <string name="empty_cart">Ваша корзина пуста</string>
     <string name="offers_error">Ошибка при загрузке предложений</string>
+    <string name="back_to_menu">Вернуться к меню</string>
 
 
 </resources>

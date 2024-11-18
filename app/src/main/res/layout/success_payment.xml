@@ -3,9 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="12dp"
     android:background="?attr/colorPrimary"
     android:id="@+id/successPayment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/background_with_shadow"
+        app:layout_constraintTop_toTopOf="parent">
 
     <TextView
         android:id="@+id/cartTitle"
@@ -19,15 +25,26 @@
         android:textSize="40sp"
         android:textColor="?attr/colorOnPrimary"/>
 
-    <com.google.android.material.button.MaterialButton
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
         android:id="@+id/backToMenuFromSuccess"
-        style="@style/Widget.AppTheme.IconButton"
-        android:layout_width="@dimen/icon_button_size"
-        android:layout_height="@dimen/icon_button_size"
-        android:layout_marginBottom="@dimen/common_spacing"
-        app:iconTint="?attr/colorOnPrimary"
-        app:icon="@drawable/baseline_arrow_back_24"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/back_to_menu"
+        android:textSize="20sp"
+        android:textColor="?attr/colorOnPrimary"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:cornerRadius="10dp"
+        app:strokeColor="?attr/colorOnPrimary"
+        app:strokeWidth="2dp"
+        android:layout_marginBottom="40dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
