@@ -108,7 +108,8 @@
                             numberpicker:max="10"
                             numberpicker:min="0"
                             numberpicker:unit="1"
-                            numberpicker:value="0" />
+                            numberpicker:value="0"
+                            numberpicker:custom_layout="@layout/number_picker_custom_layout"/>
                     </LinearLayout>
 
                     <TextView

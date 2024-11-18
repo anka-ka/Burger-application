@@ -59,6 +59,9 @@
     <string name="empty_cart">Ваша корзина пуста</string>
     <string name="offers_error">Ошибка при загрузке предложений</string>
     <string name="back_to_menu">Вернуться к меню</string>
+    <string name="increment"> + </string>
+    <string name="decrement"> - </string>
+    <string name="display">0</string>
 
 
 </resources>

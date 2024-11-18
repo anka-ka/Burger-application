@@ -57,4 +57,7 @@
     <string name="empty_cart">Your cart is empty</string>
     <string name="offers_error">Error loading offers</string>
     <string name="back_to_menu">Back to menu</string>
+    <string name="increment">+</string>
+    <string name="decrement">-</string>
+    <string name="display">0</string>
 </resources>
