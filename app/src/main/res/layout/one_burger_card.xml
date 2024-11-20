@@ -141,16 +141,23 @@
 
     <Button
         android:id="@+id/basketButton"
-        style="?attr/materialIconButtonFilledStyle"
-        android:layout_width="match_parent"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginBottom="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
         android:text="@string/add_to_your_basket"
         android:textColor="?attr/colorOnPrimary"
-        android:gravity="center"
         app:iconTint="?attr/colorOnPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:icon="@drawable/baseline_shopping_basket_24" />
+        app:icon="@drawable/baseline_shopping_basket_24"
+        app:strokeColor="?attr/colorOnPrimary"
+        app:cornerRadius="10dp"
+        app:strokeWidth="1dp"/>
 
 </RelativeLayout>
