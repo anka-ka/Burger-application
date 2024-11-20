@@ -67,3 +67,27 @@ The application supports English and Russian languages, as well as dark and ligh
 11. If the user loses internet connection while using the application, there will be displayed a warning message about it.
 
     ![Lost internet connection](/app/src/main/res/drawable/images/app10.png)
+
+## Installation and launch 
+### Requirements: 
+* Android 7.0 and above 
+* Free space: 50 MB
+* Internet: Required for the application to work.
+  
+### Installation:
+* Download the APK file from the release.
+* Install the APK on your device.
+
+### Launch from source:
+* Clone repository:git clone https://github.com/anka-ka/Burger-application.git
+* Open the project in Android Studio.
+* Synchronize Gradle and run the app.
+
+## Backend Integration
+
+This application relies on a backend service developed by [Anton Shashkov](https://github.com/z1kman). The backend handles business logic of this application.
+
+You can find the backend service here:
+
+[Swagger API](https://ashashkov.com/project/burgerRestaurant/api/docs)
+[Backend Repository](https://github.com/z1kman/burgerRestaurantBackend)
