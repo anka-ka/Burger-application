@@ -22,6 +22,10 @@ The application supports English and Russian languages, as well as dark and ligh
 3. Retrofit – for interacting with the REST API.
 4. Material Design – for UI styling.
 
+  ## Demonstration of application functionality
+
+![App functionality](assets/burger_app_animation.gif)
+
   ## The view of my application
 
 1. The preview that greets the user when the application is launched.
@@ -90,4 +94,5 @@ This application relies on a backend service developed by [Anton Shashkov](https
 You can find the backend service here:
 
 [Swagger API](https://ashashkov.com/project/burgerRestaurant/api/docs)
+
 [Backend Repository](https://github.com/z1kman/burgerRestaurantBackend)
