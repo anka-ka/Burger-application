@@ -93,6 +93,6 @@ This application relies on a backend service developed by [Anton Shashkov](https
 
 You can find the backend service here:
 
-[Swagger API](https://ashashkov.com/project/burgerRestaurant/api/docs)
+[Swagger API](https://api-burger.ashashkov.com/api/docs)
 
 [Backend Repository](https://github.com/z1kman/burgerRestaurantBackend)
