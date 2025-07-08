@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -21,9 +23,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import java.math.BigDecimal
 import java.math.RoundingMode
+
 
 
 class CartAdapter(
@@ -32,6 +36,7 @@ class CartAdapter(
     private var cart: Cart,
     private val lifecycleOwner: LifecycleOwner,
     private val coroutineScope: CoroutineScope,
+    private val progressBar: ProgressBar,
 ) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
     class CartViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -41,6 +46,7 @@ class CartAdapter(
         val shortBurgerDescription: TextView = itemView.findViewById(R.id.shortBurgerDescription)
         val totalPrice: TextView = itemView.findViewById(R.id.totalPrice)
         val numberPicker: com.travijuu.numberpicker.library.NumberPicker = itemView.findViewById(R.id.numberPicker)
+
     }
 
     fun updateCart(newItems: List<Product>) {
@@ -84,14 +90,21 @@ class CartAdapter(
 
         coroutineScope.launch {
             holder.numberPicker.valueChangeFlow()
+                .onEach {
+                    cartViewModel._isProcessing.value = true
+                   progressBar.visibility = View.VISIBLE
+                    holder.numberPicker.isEnabled = false
+                }
                 .debounce(3000)
                 .distinctUntilChanged()
                 .collect { value ->
-                    cartViewModel.updateCartQuantity(item, value)
-
-                    val total = calculateTotalPrice(item.price, value)
-                    holder.totalPrice.text = total.toString()
-
+                    try {
+                        cartViewModel.updateCartQuantity(item, value)
+                    } finally {
+                        cartViewModel._isProcessing.value = false
+                        progressBar.visibility = View.GONE
+                        holder.numberPicker.isEnabled = true
+                    }
                 }
         }
     }

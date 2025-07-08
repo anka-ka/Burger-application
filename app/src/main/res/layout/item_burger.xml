@@ -59,7 +59,7 @@
                 style="?attr/floatingActionButtonSmallStyle"
                 app:backgroundTint="?attr/colorPrimary"
                 app:showMotionSpec="@anim/nav_default_pop_enter_anim"
-                app:elevation="6dp"
+                app:elevation="2dp"
                 app:tint="?attr/colorOnPrimary"
                 app:pressedTranslationZ="2dp"
                 app:borderWidth="2dp"

@@ -15,6 +15,8 @@ import com.example.burgerapplication.error.AppUnknownError
 import com.example.burgerapplication.error.NetworkError
 import com.example.burgerapplication.repository.CartRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -46,6 +48,9 @@ class CartViewModel @Inject constructor(
     private val _orderResponse = MutableLiveData<OrderResponse>()
     val orderResponse: LiveData<OrderResponse> = _orderResponse
 
+    val _isProcessing = MutableStateFlow(false)
+    val isProcessing: StateFlow<Boolean> = _isProcessing
+
     fun sendOrder(paymentMethod: String) {
         viewModelScope.launch {
             try {
@@ -75,6 +80,7 @@ class CartViewModel @Inject constructor(
     }
 
     fun updateCartQuantity(product: Product, quantity: Int) {
+        _isProcessing.value = true
         viewModelScope.launch {
             try {
                 repository.saveQuantityLocally(product, quantity)
@@ -86,12 +92,16 @@ class CartViewModel @Inject constructor(
                 _errorEvent.value = true
             } catch (e: AppUnknownError) {
                 _errorEvent.value = true
-            }
+
+        } finally {
+            _isProcessing.value = false
+        }
         }
     }
 
     fun updateCartData() {
         viewModelScope.launch {
+            _isLoading.value = true
             val localCartItems = repository.getCartFromLocal()
             val token = appAuth.getAuthToken()
             try {

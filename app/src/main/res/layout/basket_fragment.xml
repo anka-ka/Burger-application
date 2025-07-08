@@ -111,16 +111,25 @@
             tools:listitem="@layout/one_added_product" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="150dp"
+        android:paddingEnd="100dp">
+
 
     <ProgressBar
         android:id="@+id/progress"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="?android:attr/progressBarStyleLarge"
+        android:indeterminate="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+</RelativeLayout>
 
 
     <androidx.constraintlayout.widget.Barrier
