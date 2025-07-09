@@ -156,23 +156,47 @@
             android:paddingBottom="10dp"
             android:paddingTop="20dp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/finalPrice"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@id/pointsTitle" />
 
-        <TextView
-            android:id="@+id/finalPrice"
-            android:layout_width="0dp"
+
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerFinalPrice"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            tools:text="@tools:sample/lorem[1]"
-            android:textColor="?attr/colorOnSecondary"
-            android:textAlignment="textEnd"
-            android:paddingEnd="8dp"
             android:paddingTop="20dp"
+            android:paddingEnd="8dp"
+            android:visibility="gone"
+            app:shimmer_base_color="?attr/colorPrimaryVariant"
+            app:shimmer_highlight_color="?attr/colorPrimary"
+            app:layout_constraintTop_toTopOf="@id/final_price_title"
+            app:layout_constraintEnd_toEndOf="parent">
+
+
+            <View
+                android:layout_width="60dp"
+                android:layout_height="16dp"
+                android:background="@drawable/shimmer_background"/>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+        <TextView
+            android:id="@+id/finalPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="8dp"
+            android:visibility="visible"
+            android:textAlignment="textEnd"
+            android:textColor="?attr/colorOnSecondary"
+            android:textSize="14sp"
+            app:layout_constraintTop_toTopOf="@id/final_price_title"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/final_price_title"
-            app:layout_constraintTop_toTopOf="@id/final_price_title" />
+            tools:text="@tools:sample/lorem[1]" />
 
         <TextView
             android:id="@+id/pointsTitle"

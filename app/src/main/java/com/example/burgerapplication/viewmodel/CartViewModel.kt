@@ -1,7 +1,6 @@
 package com.example.burgerapplication.viewmodel
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -158,6 +157,20 @@ class CartViewModel @Inject constructor(
                 _errorEvent.value = true
             } catch (e: AppUnknownError) {
                 _errorEvent.value = true
+            }
+        }
+    }
+    fun onQuantityChanged(product: Product, value: Int) {
+        viewModelScope.launch {
+            try {
+                _isProcessing.value = true
+                repository.saveQuantityLocally(product, value)
+                getProductQuantity(product.id)
+                updateCartData()
+            } catch (e: Exception) {
+                _errorEvent.value = true
+            } finally {
+                _isProcessing.value = false
             }
         }
     }

@@ -4,6 +4,7 @@ import com.example.burgerapplication.adapter.ProductAdapter
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -102,9 +103,10 @@ class MenuFragment : Fragment(R.layout.menu_fragment) {
     }
 
     private fun setupRecyclerView() {
+        val basketIcon = requireView().findViewById<ImageView>(R.id.basketIcon)
         recyclerView.apply {
             layoutManager = GridLayoutManager(context, 2)
-            adapter = ProductAdapter(cartViewModel) { burger ->
+            adapter = ProductAdapter(cartViewModel, basketIcon) { burger ->
                 val bundle = Bundle().apply {
                     putInt(
                         "id",

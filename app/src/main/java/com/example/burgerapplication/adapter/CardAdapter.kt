@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-import android.widget.Toast
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -15,6 +14,7 @@ import com.example.burgerapplication.R
 import com.example.burgerapplication.dto.Cart
 import com.example.burgerapplication.dto.Product
 import com.example.burgerapplication.viewmodel.CartViewModel
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.travijuu.numberpicker.library.NumberPicker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.FlowPreview
@@ -37,6 +37,8 @@ class CartAdapter(
     private val lifecycleOwner: LifecycleOwner,
     private val coroutineScope: CoroutineScope,
     private val progressBar: ProgressBar,
+    private val shimmerFinalPrice: ShimmerFrameLayout,
+    private val finalPrice: TextView,
 ) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
     class CartViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -92,14 +94,17 @@ class CartAdapter(
             holder.numberPicker.valueChangeFlow()
                 .onEach {
                     cartViewModel._isProcessing.value = true
-                   progressBar.visibility = View.VISIBLE
+                    progressBar.visibility = View.VISIBLE
+                    shimmerFinalPrice.visibility = View.VISIBLE
+                    shimmerFinalPrice.startShimmer()
+                    finalPrice.visibility = View.INVISIBLE
                     holder.numberPicker.isEnabled = false
                 }
                 .debounce(3000)
                 .distinctUntilChanged()
                 .collect { value ->
                     try {
-                        cartViewModel.updateCartQuantity(item, value)
+                        cartViewModel.onQuantityChanged(item, value)
                     } finally {
                         cartViewModel._isProcessing.value = false
                         progressBar.visibility = View.GONE
@@ -108,6 +113,7 @@ class CartAdapter(
                 }
         }
     }
+
 
     override fun getItemCount(): Int = items.size
 

@@ -62,6 +62,8 @@
     <string name="increment"> + </string>
     <string name="decrement"> - </string>
     <string name="display">0</string>
+    <string name="still_loading">Еще идет загрузка…</string>
+    <string name="loading_error">Ошибка загрузки</string>
 
 
 </resources>

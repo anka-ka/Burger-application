@@ -60,4 +60,6 @@
     <string name="increment">+</string>
     <string name="decrement">-</string>
     <string name="display">0</string>
+    <string name="still_loading">Still loading…</string>
+    <string name="loading_error">Loading error</string>
 </resources>

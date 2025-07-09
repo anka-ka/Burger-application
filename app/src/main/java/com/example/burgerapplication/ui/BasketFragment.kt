@@ -2,7 +2,6 @@ package com.example.burgerapplication.ui
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
@@ -19,13 +18,9 @@ import com.example.burgerapplication.databinding.BasketFragmentBinding
 import com.example.burgerapplication.dto.Cart
 import com.example.burgerapplication.viewmodel.CartViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.launch
 
 
@@ -53,7 +48,16 @@ class BasketFragment : Fragment(R.layout.basket_fragment) {
     }
 
     private fun setupViews(progressBar: ProgressBar) {
-        cartAdapter = CartAdapter(emptyList(), cartViewModel, cart, viewLifecycleOwner, viewLifecycleOwner.lifecycleScope, progressBar)
+        cartAdapter = CartAdapter(
+            emptyList(),
+            cartViewModel,
+            cart,
+            viewLifecycleOwner,
+            viewLifecycleOwner.lifecycleScope,
+            progressBar,
+            binding.shimmerFinalPrice,
+            binding.finalPrice
+        )
         binding.burgerRecyclerView.apply {
             adapter = cartAdapter
             layoutManager = LinearLayoutManager(requireContext())
@@ -77,7 +81,14 @@ class BasketFragment : Fragment(R.layout.basket_fragment) {
             cartResponse?.let {
                 cartAdapter.updateCart(cartResponse.products)
                 binding.points.text = cartResponse.points.toString()
+
                 binding.finalPrice.text = cartResponse.finalPrice.toString()
+
+                binding.shimmerFinalPrice.stopShimmer()
+                binding.shimmerFinalPrice.visibility = View.GONE
+                binding.finalPrice.visibility = View.VISIBLE
+
+
             }
         }
     }
@@ -100,7 +111,7 @@ class BasketFragment : Fragment(R.layout.basket_fragment) {
 
         binding.proceedToPayment.setOnClickListener {
             if (cartViewModel.isProcessing.value) {
-                Toast.makeText(requireContext(), "Still loading...", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.still_loading, Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -108,7 +119,6 @@ class BasketFragment : Fragment(R.layout.basket_fragment) {
                 try {
                     binding.proceedToPayment.isEnabled = false
                     binding.progress.visibility = View.VISIBLE
-                    cartViewModel._isProcessing.value = true
 
                     cartViewModel.updateCartData()
 
@@ -120,7 +130,7 @@ class BasketFragment : Fragment(R.layout.basket_fragment) {
                     val cartResponse = cartViewModel.cartResponse.value
                     when {
                         cartResponse == null -> {
-                            Toast.makeText(requireContext(), "Ошибка загрузки", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), R.string.loading_error, Toast.LENGTH_SHORT).show()
                         }
                         cartResponse.products.isEmpty() -> {
                             Toast.makeText(requireContext(), R.string.empty_cart, Toast.LENGTH_LONG).show()
